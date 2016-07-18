@@ -198,13 +198,13 @@ rm(triangle_diagram_current_mode_all_users)
 
 # Save plots out ####
 
-plot_name <- "28_triangle_distribution_all"
+plot_name <- "28_triangle_distribution_TYRO"
 
-plotlist_current_mode_all_users$All %>%
+plotlist_current_mode_all_users$TYRO %>%
   { 
     if(save_plots){
       setwd(outloc)
-      ggsave(paste(plot_name, ".png", sep = ""), plot = ., )  
+      ggsave(paste(plot_name, ".png", sep = ""), plot = ., width = 12, height = 9)  
       setwd(current_wd)
     } else{print(.)}   
   }

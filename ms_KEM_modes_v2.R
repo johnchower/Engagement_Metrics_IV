@@ -76,10 +76,10 @@ user_platformaction_datetime <-
 standard_user_subset <- user_facts %>%
   merge(select(champion_facts, champion_id, dont.exclude)) %>%
   filter(
-    dont.exclude
-    , 
-    !fake_end_user
-    , 
+#    dont.exclude
+#    , 
+#    !fake_end_user
+#    , 
     account_type == "End User"
   ) %>%
   {.$user_id}
@@ -102,7 +102,8 @@ FamilyLife_users <- user_facts %>%
 
 # Output Location and parameters ####
 save_plots <- T
-outloc <- "June_27_plots"
+outloc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_17"
+current_wd <- getwd()
 
 # Prepare current mode data for plotting ####
 
@@ -203,8 +204,8 @@ plotlist_current_mode_all_users$All %>%
   { 
     if(save_plots){
       setwd(outloc)
-      ggsave(paste(plot_name, ".png", sep = ""), .)  
-      setwd("..")
+      ggsave(paste(plot_name, ".png", sep = ""), plot = ., )  
+      setwd(current_wd)
     } else{print(.)}   
   }
 

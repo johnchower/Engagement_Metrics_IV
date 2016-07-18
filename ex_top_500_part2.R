@@ -87,7 +87,7 @@ user_facts_proxy_signup_date %>%
       , user_id
       , grep("in_top", colnames(top_user_facts))
     )
-  ) %>% filter(account_type != "End User") %>% View
+  ) %>% filter(account_type != "End User") %>% 
   group_by(date) %>%
   {
     dots <- as.list(paste("sum(", grep("in_top", colnames(top_user_facts), value = T), ")", sep =""))

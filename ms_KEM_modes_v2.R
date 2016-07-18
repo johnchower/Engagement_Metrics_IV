@@ -198,9 +198,18 @@ rm(triangle_diagram_current_mode_all_users)
 
 # Save plots out ####
 
-plot_name <- "28_triangle_distribution_TYRO"
+champions_to_plot <- c("All", "TYRO", "FamilyLife", "REVEAL For Church")
+plot_numbers <- as.character(28:31)
 
-plotlist_current_mode_all_users$TYRO %>%
+for(i in 1:length(champions_to_plot)){
+  champion <- champions_to_plot[i]
+  number <- plot_numbers[i]
+  
+  plot_name <- paste(number, "triangle_distribution", champion, sep = "_")
+  
+  x <- plotlist_current_mode_all_users[[champion]] 
+  x %>%
+  {. + scale_size_continuous(range = c(2.5,8))} %>%
   { 
     if(save_plots){
       setwd(outloc)
@@ -208,6 +217,9 @@ plotlist_current_mode_all_users$TYRO %>%
       setwd(current_wd)
     } else{print(.)}   
   }
+}
+
+
 
 
 

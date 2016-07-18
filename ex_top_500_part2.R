@@ -1,23 +1,3 @@
-
-
-top_user_facts %>%
-  select(number_of_actions_past_month, number_of_champion_connections) %>%
-  mutate(
-    yvar = number_of_champion_connections
-  ) %>%
-  {lm(number_of_actions_past_month ~ yvar, .)} %>%
-  summary
-
-  plot_ly(x = number_of_actions_past_month, y = number_of_champion_connections, mode = "markers")
-  chisquare_analysis
-  
-top_user_facts %>% {.$number_of_actions_past_month} %>% {.[!is.na(.)]} %>% min
-
-top_user_facts %>%
-  mutate(xvar = gave_age, yvar = in_top_500) %>%
-  {lm(yvar ~ xvar, .)} %>%
-  summary
-
 #activitylevel vs cohortmembership 
 for(n in user_cutoffs){
   topvar <- paste("in_top", n, sep = "_")

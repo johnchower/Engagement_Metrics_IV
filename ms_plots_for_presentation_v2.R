@@ -16,7 +16,7 @@ source("fn_line_chart_layout.r")
 source("fn_plot_MAU_bar_chart.r")
 source("fn_save_or_print.r")
 
-combine_Cru <- T
+combine_Cru <- F
 
 # Read in the segmented/classified data frames ####
 
@@ -37,7 +37,6 @@ user_facts_truefirst <-
     , stringsAsFactors = FALSE
   ) %>%
   mutate(date = as.Date(date,format="%Y-%m-%d"))
-
 
 champion_facts <- 
   read.table(
@@ -73,17 +72,14 @@ date_user_table <-
 standard_user_subset <- user_facts %>%
   merge(select(champion_facts, champion_id, dont.exclude)) %>%
   filter(
-#    dont.exclude
-#    , 
-#    !fake_end_user
-#    , 
-    account_type == "End User"
+    dont.exclude
+    , account_type == "End User"
   ) %>% 
   {.$user_id} 
 
 # 1.0 Standard Subset (truefirst)
 
-standard_user_subset_truefirst <- user_facts_truefirst %>%
+standard_user_subset_truefirst <- user_facts %>%
   merge(select(champion_facts, champion_id, dont.exclude)) %>%
   filter(
         dont.exclude
@@ -123,8 +119,8 @@ starttime <- Sys.time()
 
 # Output Location and parameters ####
 save.plots <- T
-out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_17"
-out.format <- "html"
+out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_19_v2"
+out.format <- "pdf"
 
 # Breakdown of users into current state, champion  ####
 current_state_by_champion_subset <- standard_user_subset
@@ -181,13 +177,15 @@ user_breakdown_by_champion_data %>%
         , sep = ""
       )  
     , yaxisformat = "%"
-    , bottommargin = 200
+    , bottommargin = 450
   ) %>%
   save_or_print(
     save_plots = save.plots
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 
@@ -288,7 +286,7 @@ for(i in 1:length(statelist)){
 # Streaks ####
 
 # top 10s 
-streak_subset <- standard_user_subset
+streak_subset <- standard_user_subset_truefirst
 
 streak_stats <- date_user_table %>%
   select(user_id, streaks) %>%

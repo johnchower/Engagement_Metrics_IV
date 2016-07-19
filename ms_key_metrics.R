@@ -133,7 +133,7 @@ user_breakdown_by_current_state_data %>%
   {
     plot_ly(.,
       type = "bar"
-      , marker = list(color = brewer.pal(nrow(.), "Accent"))
+      , marker = list(color = brewer.pal(nrow(.), "Dark2"))
       , x = current_segment
       , y = percent_of_users
       , text = paste(100*percent_of_users, "% (", as.character(number_of_users), " users)", sep = "")

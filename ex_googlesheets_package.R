@@ -7,27 +7,15 @@ gs_user()
 View(gs_ls())
 
 
-x <- gs_title("today_vs_yesterday_core") %>% 
+x <- gs_title("core_user_metrics") %>% 
   gs_read
 
-setdiff(x$today_core, x$yesterday_core) %>% 
-  as.character %>%
-  paste(collapse = ", ", sep = "") %>%
-  noquote
+x <- gs_copy(gs_key("1j2aOKj7pxkvkwHgNzq72mFBBF9AgMz5nP4Tny6LzrfM"), to = "x")
+x <- gs_add_row(x, ws = gs_key("1j2aOKj7pxkvkwHgNzq72mFBBF9AgMz5nP4Tny6LzrfM"), input = core_user_by_actual_actions)
 
+gs_add_row(
+  gs_key("1j2aOKj7pxkvkwHgNzq72mFBBF9AgMz5nP4Tny6LzrfM")
+  , input = core_user_by_actual_actions
+) 
 
-users_lost <- gs_title("users_lost_by_moving_window") %>%
-  gs_read %>%
-  {
-    colnames(.)[1] <- "user_id"
-    return(.)
-  }
-
-users_lost %>%
-  group_by(user_id) %>%
-  summarise(number_of_session_duration_dates = n()) %>%
-  arrange(desc(number_of_session_duration_dates)) %>% 
-  {.$number_of_session_duration_dates} %>%
-  {. > 3} %>%
-  sum
-  View
+View(gs_ls())

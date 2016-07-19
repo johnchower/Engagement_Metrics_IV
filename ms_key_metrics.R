@@ -93,4 +93,5 @@ user_breakdown_by_current_state_data %>%
         , sep = ""
       ) 
     , yaxisformat = "%"
+    , bottommargin = 150
   )

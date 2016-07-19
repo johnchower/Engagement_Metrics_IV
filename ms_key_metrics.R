@@ -72,10 +72,11 @@ user_breakdown_by_current_state_data <- user_facts %>%
     total_number_of_users = sum(number_of_users)
     , percent_of_users = number_of_users/total_number_of_users
   ) %>% 
-  arrange(desc(percent_of_users))
+  arrange(desc(percent_of_users)) %>%
+  mutate(percent_of_users = round(percent_of_users, 3))
 
+# Produce user breakdown plot
 user_breakdown_by_current_state_data %>%
-  mutate(percent_of_users = round(percent_of_users, 3)) %>%
   plot_ly(
     type = "bar"
     , x = current_segment

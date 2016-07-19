@@ -6,6 +6,7 @@ library(googlesheets)
 library(dplyr)
 library(plyr)
 library(plotly)
+library(RColorBrewer)
 
 date_user_table <- 
   read.table(
@@ -129,15 +130,18 @@ for (i in seq_len(nrow(user_breakdown_by_current_state_data))) {
 
 
 user_breakdown_by_current_state_data %>%
-  plot_ly(
-    type = "bar"
-    , x = current_segment
-    , y = percent_of_users
-    , text = paste(100*percent_of_users, "% (", as.character(number_of_users), " users)", sep = "")
-    , mode = "markers"
-    , hoverinfo = "text"
-    , color = current_segment
-  ) %>%
+  {
+    plot_ly(.,
+      type = "bar"
+      , marker = list(color = brewer.pal(nrow(.), "Accent"))
+      , x = current_segment
+      , y = percent_of_users
+      , text = paste(100*percent_of_users, "% (", as.character(number_of_users), " users)", sep = "")
+      , mode = "markers"
+      , hoverinfo = "text"
+      , color = current_segment
+    )
+  } %>%
   layout(showlegend = F, annotations = a) %>%
   bar_chart_layout(
     charttitle = 

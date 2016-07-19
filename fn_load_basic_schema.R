@@ -78,6 +78,8 @@ load_basic_schema <-
     
     cru_champions <- c(45,5,95,69,34,93,29,83,82)
     
+    fake_champions <- c(12,16,17,18,33,40,41,47,49,50,52,54,59,60,65,68,77,78,81,85,96)
+    
     champid_champname <- path_to_champid_champname %>%
       name_as_looker_output %>% 
       grep(dir(recursive = T), value = T) %>%
@@ -100,22 +102,7 @@ load_basic_schema <-
         )
       } %>%
       mutate(
-        dont.exclude = !(
-          grepl("Gloo", champion_name, ignore.case = T) 
-          | grepl("Emily Shirk", champion_name, ignore.case = T)
-          | grepl("Fray", champion_name)
-          | grepl("Justin Vallelonga", champion_name)
-          | grepl("yolo", champion_name)
-          | grepl("Jimmy Mellado", champion_name)
-          | grepl("Scott Beck", champion_name)
-          | grepl("Justin's Champion", champion_name)
-          | grepl("Nico's Champion", champion_name)
-          | grepl("Smola", champion_name)
-          | grepl("Test Account", champion_name)
-          | grepl("_qa", champion_name)
-          | grepl("Champion Services", champion_name)
-          | grepl("Ambiguous", champion_name)
-        )
+        dont.exclude = !(champion_id %in% fake_champions)
       ) %>%
       mutate(
         champion_organization =

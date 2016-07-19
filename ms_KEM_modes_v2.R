@@ -102,7 +102,7 @@ FamilyLife_users <- user_facts %>%
 
 # Output Location and parameters ####
 save_plots <- T
-outloc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_17"
+outloc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_19"
 current_wd <- getwd()
 
 # Prepare current mode data for plotting ####
@@ -209,7 +209,6 @@ for(i in 1:length(champions_to_plot)){
   
   x <- plotlist_current_mode_all_users[[champion]] 
   x %>%
-  {. + scale_size_continuous(range = c(2.5,8))} %>%
   { 
     if(save_plots){
       setwd(outloc)

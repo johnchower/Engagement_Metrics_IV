@@ -2,6 +2,7 @@
 
 source("fn_moving_sum.r")
 source("fn_bar_chart_layout.r")
+source("fn_save_or_print.r")
 library(googlesheets)
 library(dplyr)
 library(plyr)
@@ -28,6 +29,8 @@ user_facts <-
 
 core_user_metrics_oldgs <- gs_title("core_user_metrics") %>% 
   gs_read
+
+out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/Cornerstone_Metrics"
 
 # Subsets
 
@@ -96,6 +99,7 @@ new_row_duplicated <- core_user_metrics_oldgs %>%
 if(!new_row_duplicated){
   gs_add_row(
     gs_key("1j2aOKj7pxkvkwHgNzq72mFBBF9AgMz5nP4Tny6LzrfM")
+    , ws = "Values"
     , input = core_user_by_window
   ) 
 }
@@ -146,11 +150,18 @@ user_breakdown_by_current_state_data %>%
   bar_chart_layout(
     charttitle = 
       paste(
-        "Percent of Users in Each State ("
+        "Percent of Users in Each State"
+#        , as.character(Sys.Date())
+        , " ("
         , prettyNum(user_breakdown_by_current_state_data$total_number_of_users[1], big.mark = ",")
         , " Total Users)"
         , sep = ""
       ) 
     , yaxisformat = "%"
     , bottommargin = 150
+  ) %>%
+  save_or_print(
+    outloc = out.loc
+    , plot_name = paste("Percent_of_users_in_each_state", Sys.Date(), sep = "_")
+    , outformat = "png"
   )

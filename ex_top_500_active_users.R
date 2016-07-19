@@ -135,13 +135,9 @@ user_facts %<>%
 # End users who have never taken a "champion/internal only" platform action, and who
 # don't belong to the list of flagged champions.
 
-standard_user_subset <- user_facts %>%
-  merge(select(champion_facts, champion_id, dont.exclude)) %>%
+standard_user_subset <- user_facts %>% 
+#  merge(select(champion_facts, champion_id, dont.exclude)) %>% 
   filter(
-#    dont.exclude
-#    , 
-#    !fake_end_user
-#    , 
     account_type == "End User"
   ) %>% 
   {.$user_id} 
@@ -194,20 +190,13 @@ top_user_facts <- user_facts %>%
     , all = T
   ) %>%
   arrange(desc(number_of_actions_past_month)) %>%
-  {
-    out <- .
-    for(j in user_cutoffs){
-      out <- 
-        mutate_(out
-                ,.dots = 
-                    setNames(
-                      list(~(as.numeric(row.names(out)) <= j))
-                      , paste("in_top", as.character(j), sep = "_")
-                    )
-        )
-    }
-    return(out)
-  }
+  mutate(
+    in_top_10 = user_id %in% top_users_list$top_10
+    , in_top_50 = user_id %in% top_users_list$top_50
+    , in_top_100 = user_id %in% top_users_list$top_100
+    , in_top_250 = user_id %in% top_users_list$top_250
+    , in_top_500 = user_id %in% top_users_list$top_500
+  )
 
 # Number of champions connected to
 

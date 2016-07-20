@@ -14,8 +14,13 @@ library(dplyr)
 library(chron)
 library(plotly)
 
+source('fn_name_as_looker_output.r')
+
 path_platform_action_list <- 
    "input_csvs/platform_action_list.csv"
+
+path_platform_action_list_new <-
+  "input_csvs/platform_action_list"
 
 platform_action_list <- 
   read.table(
@@ -25,24 +30,17 @@ platform_action_list <-
   ) %>%
   rename(platform_action = User.Platform.Action.Facts.Platform.Action)
 
-# Read in the segmented/classified data frames ####
-
-user_facts <- 
+platform_action_list_new <- path_platform_action_list_new %>%
+  name_as_looker_output %>%
+  grep(dir(recursive = T), value = T) %>%
   read.table(
-    "user_table.csv"
-    , header=TRUE
-    , sep=','
-    , stringsAsFactors = FALSE
+    header = T
+    , sep = ","
+    , stringsAsFactors = F
   ) %>%
-  mutate(date = as.Date(date,format="%Y-%m-%d"))
+  rename(platform_action = User.Platform.Action.Facts.Platform.Action)
 
-champion_facts <- 
-  read.table(
-    "champion_facts.csv"
-    , header=TRUE
-    , sep=','
-    , stringsAsFactors = FALSE
-  ) 
+# Read in the segmented/classified data frames ####
 
 platformaction_facts <- 
   read.table(
@@ -51,29 +49,10 @@ platformaction_facts <-
     , sep=','
     , stringsAsFactors = FALSE
   )
-
-date_user_table <- 
-  read.table(
-    "date_user_table.csv"
-    , header=TRUE
-    , sep=','
-    , stringsAsFactors = FALSE
-  ) %>%
-  mutate(date = as.Date(date,format="%Y-%m-%d"))
-
-user_platformaction_datetime <- 
-  read.table(
-    "user_platformaction_datetime.csv"
-    , header=TRUE
-    , sep=','
-    , stringsAsFactors = FALSE
-  ) %>%
-  mutate(date = as.Date(date,format="%Y-%m-%d"))
-
 #
 
 platformaction_facts %<>%
-  merge(platform_action_list, all = T) %>% 
+  merge(platform_action_list_new, all = T) %>% 
   arrange(!is.na(X), X) %>%
   {
     if(

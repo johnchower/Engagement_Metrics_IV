@@ -15,6 +15,7 @@ library(chron)
 library(plotly)
 
 source('fn_name_as_looker_output.r')
+use_editor <- T
 
 path_platform_action_list <- 
    "input_csvs/platform_action_list.csv"
@@ -53,18 +54,38 @@ platformaction_facts <-
 
 platformaction_facts %<>%
   merge(platform_action_list_new, all = T) %>% 
-  arrange(!is.na(X), X) %>%
+#  arrange(!is.na(X), X) %>%
+  arrange(platform_action) %>%
   {
     if(
       nrow(filter(., is.na(X))) > 0
-    ){edit(.)}
-    else {return(.)}
+      & use_editor
+    ){
+      requires_edit <- F
+      edit(.)
+    }
+    else if(nrow(filter(., is.na(X))) > 0){
+      requires_edit <- T
+      print("Edit platformaction_facts before proceeding.")
+      return(.)
+    }
+    else {
+      requires_edit <- F
+      print("No editing required.")
+      return(.)
+    }
   } 
 
-platformaction_facts %<>%
-  select(-X) %>%
-  {
-    .[is.na(.)] <- ""
-    return(.)
+# Run this code snippet after updating platformaction_facts
+if(
+  nrow(filter(platformaction_facts, is.na(X))) == 0
+) {
+    platformaction_facts %<>%
+      select(-X) %>%
+      {
+        .[is.na(.)] <- ""
+        return(.)
+      }
   }
+
 

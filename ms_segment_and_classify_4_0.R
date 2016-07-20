@@ -185,30 +185,7 @@ platform_action_list <-
   ) %>%
   rename(platform_action = User.Platform.Action.Facts.Platform.Action)
 
-platformaction_facts <- basic_platformaction %>%
-  merge(platform_action_list, all = T) %>% 
-  arrange(!is.na(end_user_allowed), end_user_allowed, platform_action) %>%
-  {
-    if(
-      nrow(filter(., is.na(end_user_allowed))) > 0
-    ){edit(.)}
-    else {return(.)}
-  } 
-
-platformaction_facts %<>%
-  {
-    .[is.na(.)] <- ""
-    return(.)
-  } %>%
-  {
-    if("X" %in% colnames(.)){
-      return(select(.,-X))
-    } else {return(.)}
-  }
-
-# Add ambiguous champions to 
-
-
+platformaction_facts <- basic_platformaction 
 
 # Write calculated tables to disk ####
 

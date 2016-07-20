@@ -1,172 +1,210 @@
 "","platform_action","group","mode","end_user_allowed"
-"1","Added Champion Analytics Widget","","Champion.Others",FALSE
-"2","Added Champion Assessment Analytics Widget","","Champion.Others",FALSE
-"3","Added Champion Cohort Overview Widget","","Champion.Others",FALSE
-"4","Added Champion Program Analytics Widget","","Champion.Others",FALSE
-"5","Became Champion Member","","Champion.Others",FALSE
-"6","Cloned Program","","Champion.Others",FALSE
-"7","Created AddToQueueElement Element","","",FALSE
-"8","Created AssessmentMetricPrerequisite Prerequisite","","Champion.Others",FALSE
-"9","Created AssessmentResultPrerequisite Prerequisite","","Champion.Others",FALSE
-"10","Created BlockquoteElement Element","","Champion.Others",FALSE
-"11","Created ChampionConnectElement Element","","Champion.Others",FALSE
-"12","Created CohortConnectElement Element","","Champion.Others",FALSE
-"13","Created ConfigureChampionDashboardElement Element","","Champion.Others",FALSE
-"14","Created ConfigureUserDashboardElement Element","","Champion.Others",FALSE
-"15","Created ContentNode Node","","Champion.Others",FALSE
-"16","Created CreateSpaceElement Element","","Champion.Others",FALSE
-"17","Created DisplayChildrenElement Element","","Champion.Others",FALSE
-"18","Created EparachuteElement Element","","Champion.Others",FALSE
-"19","Created FormElement Element","","Champion.Others",FALSE
-"20","Created FormReferenceElement Element","","",FALSE
-"21","Created HeaderElement Element","","Champion.Others",FALSE
-"22","Created HorizontalRuleElement Element","","Champion.Others",FALSE
-"23","Created ImageElement Element","","Champion.Others",FALSE
-"24","Created IntervalSinceStartPrerequisite Prerequisite","","Champion.Others",FALSE
-"25","Created JoinGroupSpaceElement Element","","Champion.Others",FALSE
-"26","Created ListElement Element","","Champion.Others",FALSE
-"27","Created MomentElement Element","","Champion.Others",FALSE
-"28","Created ParagraphElement Element","","Champion.Others",FALSE
-"29","Created PlatformLinkElement Element","","Champion.Others",FALSE
-"30","Created Program","","Champion.Others",FALSE
-"31","Created QuestionElement Element","","Champion.Others",FALSE
-"32","Created ReferenceNode Node","","Champion.Others",FALSE
-"33","Created ResultElement Element","","Champion.Others",FALSE
-"34","Created ToDoListElement Element","","Champion.Others",FALSE
-"35","Created UnlockDatePrerequisite Prerequisite","","Champion.Others",FALSE
-"36","Created UserImageElement Element","","Champion.Others",FALSE
-"37","Created UserNoteElement Element","","Champion.Others",FALSE
-"38","Created VideoElement Element","","Champion.Others",FALSE
-"39","Created WebLinkElement Element","","Champion.Others",FALSE
-"40","Deleted Element","","Champion.Others",FALSE
-"41","Deleted Node","","Champion.Others",FALSE
-"42","Deleted Prerequisite","","Champion.Others",FALSE
-"43","Deleted Program","","Champion.Others",FALSE
-"44","Unpublished Program","","Champion.Others",FALSE
-"45","Updated AddToQueueElement Element","","Champion.Others",FALSE
-"46","Updated AssessmentMetricPrerequisite Prerequisite","","Champion.Others",FALSE
-"47","Updated AssessmentResultPrerequisite Prerequisite","","",FALSE
-"48","Updated BlockquoteElement Element","","Champion.Others",FALSE
-"49","Updated CohortConnectElement Element","","",FALSE
-"50","Updated ContentNode Node","","Champion.Others",FALSE
-"51","Updated CreateSpaceElement Element","","Champion.Others",FALSE
-"52","Updated DisplayChildrenElement Element","","Champion.Others",FALSE
-"53","Updated Element","","Champion.Others",FALSE
-"54","Updated EparachuteElement Element","","Champion.Others",FALSE
-"55","Updated FormElement Element","","Champion.Others",FALSE
-"56","Updated HeaderElement Element","","Champion.Others",FALSE
-"57","Updated HorizontalRuleElement Element","","Champion.Others",FALSE
-"58","Updated ImageElement Element","","Champion.Others",FALSE
-"59","Updated IntervalSinceStartPrerequisite Prerequisite","","Champion.Others",FALSE
-"60","Updated JoinGroupSpaceElement Element","","Champion.Others",FALSE
-"61","Updated ListElement Element","","Champion.Others",FALSE
-"62","Updated MomentElement Element","","Champion.Others",FALSE
-"63","Updated Node","","Champion.Others",FALSE
-"64","Updated ParagraphElement Element","","Champion.Others",FALSE
-"65","Updated PlatformLinkElement Element","","Champion.Others",FALSE
-"66","Updated Prerequisite","","Champion.Others",FALSE
-"67","Updated Program","","Champion.Others",FALSE
-"68","Updated QuestionElement Element","","Champion.Others",FALSE
-"69","Updated ReferenceNode Node","","",FALSE
-"70","Updated ResultElement Element","","Champion.Others",FALSE
-"71","Updated ToDoListElement Element","","Champion.Others",FALSE
-"72","Updated UnlockDatePrerequisite Prerequisite","","Champion.Others",FALSE
-"73","Updated UserImageElement Element","","Champion.Others",FALSE
-"74","Updated UserNoteElement Element","","Champion.Others",FALSE
-"75","Updated VideoElement Element","","Champion.Others",FALSE
-"76","Updated WebLinkElement Element","","Champion.Others",FALSE
-"77","User Added Page","","",FALSE
-"78","User Removed Page","","",FALSE
-"79","Account Created","Account Created","",TRUE
-"80","Added To-Do Item from Content","Used to-do list","Invest.for.Self.Us",TRUE
-"81","Added User Program Progress Widget","Added Widget","Invest.for.Self.Us",TRUE
-"82","Added User Space Widget","Added Widget","Invest.for.Self.Us",TRUE
-"83","Answered Assessment Item","Answered Assessment Item","Receive.Value",TRUE
-"84","Assigned To-Do Item","Used to-do list","Champion.Others",TRUE
-"85","Champion Membership Invitation Accepted","Connected to Champion","Invest.for.Self.Us",TRUE
-"86","Champion Membership Invitation Declined","Invitation Declined","Disengage",TRUE
-"87","Commented on Champion Group Space Post","Commented","Invest.for.Self.Us",TRUE
-"88","Commented on Gloofie Space Post","Commented","Invest.for.Self.Us",TRUE
-"89","Commented on Private Space Post","Commented","Invest.for.Self.Us",TRUE
-"90","Commented on Timeline Post","Commented","Invest.for.Self.Us",TRUE
-"91","Commented on User Group Space Post","Commented","Invest.for.Self.Us",TRUE
-"92","Completed To-Do Item","Used to-do list","Invest.for.Self.Us",TRUE
-"93","Connected to Champion","Connected to Champion","Invest.for.Self.Us",TRUE
-"94","Created a New Dashboard","Created","Invest.for.Self.Us",TRUE
-"95","Created Gloofie Space","Created","Invest.for.Self.Us",TRUE
-"96","Created Note in Content","Created","Invest.for.Self.Us",TRUE
-"97","Created Private Collection","Created","Champion.Others",TRUE
-"98","Created Private Moment","Created","Champion.Others",TRUE
-"99","Created Private Space","Created","Invest.for.Self.Us",TRUE
-"100","Created Public Collection","Created","Champion.Others",TRUE
-"101","Created Public Moment","Created","Champion.Others",TRUE
-"102","Created User Group Space","Created","Invest.for.Self.Us",TRUE
-"103","Deleted To-Do Item","Deleted To-Do Item","Disengage",TRUE
-"104","FamilyLife - Clicked Donate Button","FamilyLife - Clicked Donate Button","Invest.for.Self.Us",TRUE
-"105","FamilyLife - Clicked Resource Link","FamilyLife - Clicked Resource Link","Invest.for.Self.Us",TRUE
-"106","FamilyLife - Listened to Broadcast","FamilyLife - Listened to Broadcast","Invest.for.Self.Us",TRUE
-"107","Followed Champion","Connected to Champion","Invest.for.Self.Us",TRUE
-"108","Followed User","Connected to user","Invest.for.Self.Us",TRUE
-"109","Invited User To Champion Group Space","Extended Invitation","Champion.Others",TRUE
-"110","Invited User To Gloofie Space","Extended Invitation","Champion.Others",TRUE
-"111","Invited User To Private Space","Extended Invitation","Champion.Others",TRUE
-"112","Invited User To User Group Space","Extended Invitation","Champion.Others",TRUE
-"113","Joined Champion Group Space","Joined Space","Invest.for.Self.Us",TRUE
-"114","Joined Gloofie Space","Joined Space","Invest.for.Self.Us",TRUE
-"115","Joined Private Space","Joined Space","Invest.for.Self.Us",TRUE
-"116","Joined User Group Space","Joined Space","Invest.for.Self.Us",TRUE
-"117","Left Champion Group Space","Left Space","Disengage",TRUE
-"118","Left Gloofie Space","Left Space","Disengage",TRUE
-"119","Made Collection","Created","Champion.Others",TRUE
-"120","Made Collection Private","","",TRUE
-"121","Made Collection Public","","",TRUE
-"122","Made Moment Private","","",TRUE
-"123","Made Moment Public","","",TRUE
-"124","Post to Timeline","Posted","Invest.for.Self.Us",TRUE
-"125","Posted to Champion Group Space","Posted","Champion.Others",TRUE
-"126","Posted to Private Space","Posted","Invest.for.Self.Us",TRUE
-"127","Posted to User Group Space","Posted","Invest.for.Self.Us",TRUE
-"128","Progressed Through Content","Progressed Through Content","Receive.Value",TRUE
-"129","Rated Champion","Rated Champion or Program","Champion.Others",TRUE
-"130","Rated Program","Rated Champion or Program","Champion.Others",TRUE
-"131","Shared Collection to Champion Group Space","Shared","Champion.Others",TRUE
-"132","Shared Collection to Private Space","Shared","Champion.Others",TRUE
-"133","Shared Collection to Timeline","Shared","Champion.Others",TRUE
-"134","Shared Collection to User Group Space","Shared","Champion.Others",TRUE
-"135","Shared Form Response to Champion Group Space","Shared","Champion.Others",TRUE
-"136","Shared Form Response to Private Space","Shared","Invest.for.Self.Us",TRUE
-"137","Shared Form Response to Timeline","Shared","Invest.for.Self.Us",TRUE
-"138","Shared Form Response to User Group Space","Shared","Invest.for.Self.Us",TRUE
-"139","Shared Link to Champion Group Space","Shared","Champion.Others",TRUE
-"140","Shared Link to Timeline","Shared","Invest.for.Self.Us",TRUE
-"141","Shared Link to User Group Space","Shared","Invest.for.Self.Us",TRUE
-"142","Shared Media to Champion Group Space","Shared","Champion.Others",TRUE
-"143","Shared Media to Private Space","Shared","Invest.for.Self.Us",TRUE
-"144","Shared Media to Timeline","Shared","Invest.for.Self.Us",TRUE
-"145","Shared Media to User Group Space","Shared","Invest.for.Self.Us",TRUE
-"146","Shared Moment to Champion Group Space","Shared","Champion.Others",TRUE
-"147","Shared Moment to Timeline","Shared","Champion.Others",TRUE
-"148","Shared Moment to User Group Space","Shared","Champion.Others",TRUE
-"149","Shared Note to Champion Group Space","Shared","Champion.Others",TRUE
-"150","Shared Note to Private Space","Shared","Invest.for.Self.Us",TRUE
-"151","Shared Note to Timeline","Shared","Invest.for.Self.Us",TRUE
-"152","Shared Note to User Group Space","Shared","Invest.for.Self.Us",TRUE
-"153","Shared Post to Champion Group Space","Shared","Champion.Others",TRUE
-"154","Shared Post to Private Space","Shared","Invest.for.Self.Us",TRUE
-"155","Shared Post to Timeline","Shared","Invest.for.Self.Us",TRUE
-"156","Shared Post to User Group Space","Shared","Invest.for.Self.Us",TRUE
-"157","Shared Program to Champion Group Space","Shared","Champion.Others",TRUE
-"158","Shared Program to Private Space","Shared","Invest.for.Self.Us",TRUE
-"159","Shared Program to Timeline","Shared","Invest.for.Self.Us",TRUE
-"160","Shared Program to User Group Space","Shared","Invest.for.Self.Us",TRUE
-"161","Shared Result to Champion Group Space","Shared","Champion.Others",TRUE
-"162","Shared Result to Private Space","Shared","Invest.for.Self.Us",TRUE
-"163","Shared Result to Timeline","Shared","Invest.for.Self.Us",TRUE
-"164","Shared Result to User Group Space","Shared","Invest.for.Self.Us",TRUE
-"165","Space Membership Invitation Accepted","Joined Space","Invest.for.Self.Us",TRUE
-"166","Space Membership Invitation Declined","Invitation Declined","Disengage",TRUE
-"167","Started Assessment","Started Assessment","Receive.Value",TRUE
-"168","Started Moment","Started Moment","Receive.Value",TRUE
-"169","Started Program","Started Program","Receive.Value",TRUE
-"170","Started Session","Started Session","",TRUE
-"171","User Onboarded","User Onboarded","Receive.Value",TRUE
+"1","Account Created","Account Created","","TRUE"
+"2","Added Champion Analytics Widget","","Champion.Others","FALSE"
+"3","Added Champion Assessment Analytics Widget","","Champion.Others","FALSE"
+"4","Added Champion Cohort Overview Widget","","Champion.Others","FALSE"
+"5","Added Champion Program Analytics Widget","","Champion.Others","FALSE"
+"6","Added To-Do Item from Content","Used to-do list","Invest.for.Self.Us","TRUE"
+"7","Added User Program Progress Widget","Added Widget","Invest.for.Self.Us","TRUE"
+"8","Added User Space Widget","Added Widget","Invest.for.Self.Us","TRUE"
+"9","Answered Assessment Item","Answered Assessment Item","Receive.Value","TRUE"
+"10","Assigned To-Do Item","Used to-do list","Champion.Others","TRUE"
+"11","Became Champion Member","","Champion.Others","FALSE"
+"12","Champion Membership Invitation Accepted","Connected to Champion","Invest.for.Self.Us","TRUE"
+"13","Champion Membership Invitation Declined","Invitation Declined","Disengage","TRUE"
+"14","Cloned Program","","Champion.Others","FALSE"
+"15","Commented on Champion Group Space Post","Commented","Invest.for.Self.Us","TRUE"
+"16","Commented on Gloofie Space Post","Commented","Invest.for.Self.Us","TRUE"
+"17","Commented on Group Space Post","Commented","Invest.for.Self.Us","TRUE"
+"18","Commented on Private Space Post","Commented","Invest.for.Self.Us","TRUE"
+"19","Commented on Shared Space Post","Commented","Invest.for.Self.Us","TRUE"
+"20","Commented on Timeline Post","Commented","Invest.for.Self.Us","TRUE"
+"21","Commented on Unactivated Space Post","Commented","Invest.for.Self.Us","TRUE"
+"22","Commented on User Group Space Post","Commented","Invest.for.Self.Us","TRUE"
+"23","Completed To-Do Item","Used to-do list","Invest.for.Self.Us","TRUE"
+"24","Connected to Champion","Connected to Champion","Invest.for.Self.Us","TRUE"
+"25","Created a New Dashboard","Created","Invest.for.Self.Us","TRUE"
+"26","Created AddToQueueElement Element","","","FALSE"
+"27","Created AssessmentMetricPrerequisite Prerequisite","","Champion.Others","FALSE"
+"28","Created AssessmentResultPrerequisite Prerequisite","","Champion.Others","FALSE"
+"29","Created BlockquoteElement Element","","Champion.Others","FALSE"
+"30","Created ChampionConnectElement Element","","Champion.Others","FALSE"
+"31","Created CohortConnectElement Element","","Champion.Others","FALSE"
+"32","Created ConfigureChampionDashboardElement Element","","Champion.Others","FALSE"
+"33","Created ConfigureUserDashboardElement Element","","Champion.Others","FALSE"
+"34","Created ContentNode Node","","Champion.Others","FALSE"
+"35","Created CreateSpaceElement Element","","Champion.Others","FALSE"
+"36","Created DisplayChildrenElement Element","","Champion.Others","FALSE"
+"37","Created EparachuteElement Element","","Champion.Others","FALSE"
+"38","Created FormElement Element","","Champion.Others","FALSE"
+"39","Created FormReferenceElement Element","","","FALSE"
+"40","Created Gloofie Space","Created","Invest.for.Self.Us","TRUE"
+"41","Created Group Space","Created","Invest.for.Self.Us",""
+"42","Created HeaderElement Element","","Champion.Others","FALSE"
+"43","Created HorizontalRuleElement Element","","Champion.Others","FALSE"
+"44","Created ImageElement Element","","Champion.Others","FALSE"
+"45","Created IntervalSinceStartPrerequisite Prerequisite","","Champion.Others","FALSE"
+"46","Created JoinGroupSpaceElement Element","","Champion.Others","FALSE"
+"47","Created ListElement Element","","Champion.Others","FALSE"
+"48","Created MomentElement Element","","Champion.Others","FALSE"
+"49","Created Note in Content","Created","Invest.for.Self.Us","TRUE"
+"50","Created ParagraphElement Element","","Champion.Others","FALSE"
+"51","Created PlatformLinkElement Element","","Champion.Others","FALSE"
+"52","Created Private Collection","Created","Champion.Others","TRUE"
+"53","Created Private Moment","Created","Champion.Others","TRUE"
+"54","Created Private Space","Created","Invest.for.Self.Us","TRUE"
+"55","Created Program","","Champion.Others","FALSE"
+"56","Created Public Collection","Created","Champion.Others","TRUE"
+"57","Created Public Moment","Created","Champion.Others","TRUE"
+"58","Created QuestionElement Element","","Champion.Others","FALSE"
+"59","Created ReferenceNode Node","","Champion.Others","FALSE"
+"60","Created ResultElement Element","","Champion.Others","FALSE"
+"61","Created Shared Space","Created","Invest.for.Self.Us","TRUE"
+"62","Created ToDoListElement Element","","Champion.Others","FALSE"
+"63","Created Unactivated Space","Created","Invest.for.Self.Us","TRUE"
+"64","Created UnlockDatePrerequisite Prerequisite","","Champion.Others","FALSE"
+"65","Created User Group Space","Created","Invest.for.Self.Us","TRUE"
+"66","Created UserImageElement Element","","Champion.Others","FALSE"
+"67","Created UserNoteElement Element","","Champion.Others","FALSE"
+"68","Created VideoElement Element","","Champion.Others","FALSE"
+"69","Created WebLinkElement Element","","Champion.Others","FALSE"
+"70","Deleted Element","","Champion.Others","FALSE"
+"71","Deleted Node","","Champion.Others","FALSE"
+"72","Deleted Prerequisite","","Champion.Others","FALSE"
+"73","Deleted Program","","Champion.Others","FALSE"
+"74","Deleted To-Do Item","Deleted To-Do Item","Disengage","TRUE"
+"75","FamilyLife - Clicked Donate Button","FamilyLife - Clicked Donate Button","Invest.for.Self.Us","TRUE"
+"76","FamilyLife - Clicked Resource Link","FamilyLife - Clicked Resource Link","Invest.for.Self.Us","TRUE"
+"77","FamilyLife - Listened to Broadcast","FamilyLife - Listened to Broadcast","Invest.for.Self.Us","TRUE"
+"78","Followed Champion","Connected to Champion","Invest.for.Self.Us","TRUE"
+"79","Followed User","Connected to user","Invest.for.Self.Us","TRUE"
+"80","Invited User To Champion Group Space","Extended Invitation","Champion.Others","TRUE"
+"81","Invited User To Gloofie Space","Extended Invitation","Champion.Others","TRUE"
+"82","Invited User To Group Space","Extended Invitation","Champion.Others","TRUE"
+"83","Invited User To Private Space","Extended Invitation","Champion.Others","TRUE"
+"84","Invited User To Shared Space","Extended Invitation","Champion.Others","TRUE"
+"85","Invited User To Unactivated Space","Extended Invitation","Champion.Others","TRUE"
+"86","Invited User To User Group Space","Extended Invitation","Champion.Others","TRUE"
+"87","Joined Champion Group Space","Joined Space","Invest.for.Self.Us","TRUE"
+"88","Joined Gloofie Space","Joined Space","Invest.for.Self.Us","TRUE"
+"89","Joined Group Space","Joined Space","Invest.for.Self.Us","TRUE"
+"90","Joined Private Space","Joined Space","Invest.for.Self.Us","TRUE"
+"91","Joined Shared Space","Joined Space","Invest.for.Self.Us","TRUE"
+"92","Joined Unactivated Space","Joined Space","Invest.for.Self.Us","TRUE"
+"93","Joined User Group Space","Joined Space","Invest.for.Self.Us","TRUE"
+"94","Left Champion Group Space","Left Space","Disengage","TRUE"
+"95","Left Gloofie Space","Left Space","Disengage","TRUE"
+"96","Left Group Space","Left Space","Disengage","TRUE"
+"97","Left Private Space","Left Space","Disengage","TRUE"
+"98","Left Shared Space","Left Space","Disengage","TRUE"
+"99","Made Collection","Created","Champion.Others","TRUE"
+"100","Made Collection Private","","","TRUE"
+"101","Made Collection Public","","","TRUE"
+"102","Made Moment Private","","","TRUE"
+"103","Made Moment Public","","","TRUE"
+"104","Post to Timeline","Posted","Invest.for.Self.Us","TRUE"
+"105","Posted to Champion Group Space","Posted","Champion.Others","TRUE"
+"106","Posted to Group Space","Posted","Champion.Others","TRUE"
+"107","Posted to Private Space","Posted","Invest.for.Self.Us","TRUE"
+"108","Posted to Shared Space","Posted","Invest.for.Self.Us","TRUE"
+"109","Posted to User Group Space","Posted","Invest.for.Self.Us","TRUE"
+"110","Progressed Through Content","Progressed Through Content","Receive.Value","TRUE"
+"111","Rated Champion","Rated Champion or Program","Champion.Others","TRUE"
+"112","Rated Program","Rated Champion or Program","Champion.Others","TRUE"
+"113","Shared Collection to Champion Group Space","Shared","Champion.Others","TRUE"
+"114","Shared Collection to Group Space","Shared","Champion.Others","TRUE"
+"115","Shared Collection to Private Space","Shared","Champion.Others","TRUE"
+"116","Shared Collection to Shared Space","Shared","Champion.Others","TRUE"
+"117","Shared Collection to Timeline","Shared","Champion.Others","TRUE"
+"118","Shared Collection to User Group Space","Shared","Champion.Others","TRUE"
+"119","Shared Form Response to Champion Group Space","Shared","Champion.Others","TRUE"
+"120","Shared Form Response to Group Space","Shared","Champion.Others","TRUE"
+"121","Shared Form Response to Private Space","Shared","Invest.for.Self.Us","TRUE"
+"122","Shared Form Response to Shared Space","Shared","Invest.for.Self.Us","TRUE"
+"123","Shared Form Response to Timeline","Shared","Invest.for.Self.Us","TRUE"
+"124","Shared Form Response to User Group Space","Shared","Invest.for.Self.Us","TRUE"
+"125","Shared Link to Champion Group Space","Shared","Champion.Others","TRUE"
+"126","Shared Link to Group Space","Shared","Champion.Others","TRUE"
+"127","Shared Link to Private Space","Shared","Invest.for.Self.Us","TRUE"
+"128","Shared Link to Shared Space","Shared","Invest.for.Self.Us","TRUE"
+"129","Shared Link to Timeline","Shared","Invest.for.Self.Us","TRUE"
+"130","Shared Link to User Group Space","Shared","Invest.for.Self.Us","TRUE"
+"131","Shared Media to Champion Group Space","Shared","Champion.Others","TRUE"
+"132","Shared Media to Group Space","Shared","Shared","TRUE"
+"133","Shared Media to Private Space","Shared","Invest.for.Self.Us","TRUE"
+"134","Shared Media to Shared Space","Shared","Invest.for.Self.Us","TRUE"
+"135","Shared Media to Timeline","Shared","Invest.for.Self.Us","TRUE"
+"136","Shared Media to User Group Space","Shared","Invest.for.Self.Us","TRUE"
+"137","Shared Moment to Champion Group Space","Shared","Champion.Others","TRUE"
+"138","Shared Moment to Group Space","Shared","Champion.Others","TRUE"
+"139","Shared Moment to Private Space","Shared","Invest.for.Self.Us","TRUE"
+"140","Shared Moment to Shared Space","Shared","Invest.for.Self.Us","TRUE"
+"141","Shared Moment to Timeline","Shared","Champion.Others","TRUE"
+"142","Shared Moment to User Group Space","Shared","Champion.Others","TRUE"
+"143","Shared Note to Champion Group Space","Shared","Champion.Others","TRUE"
+"144","Shared Note to Group Space","Shared","Champion.Others","TRUE"
+"145","Shared Note to Private Space","Shared","Invest.for.Self.Us","TRUE"
+"146","Shared Note to Shared Space","Shared","Invest.for.Self.Us","TRUE"
+"147","Shared Note to Timeline","Shared","Invest.for.Self.Us","TRUE"
+"148","Shared Note to User Group Space","Shared","Invest.for.Self.Us","TRUE"
+"149","Shared Post to Champion Group Space","Shared","Champion.Others","TRUE"
+"150","Shared Post to Group Space","Shared","Champion.Others","TRUE"
+"151","Shared Post to Private Space","Shared","Invest.for.Self.Us","TRUE"
+"152","Shared Post to Shared Space","Shared","Invest.for.Self.Us","TRUE"
+"153","Shared Post to Timeline","Shared","Invest.for.Self.Us","TRUE"
+"154","Shared Post to User Group Space","Shared","Invest.for.Self.Us","TRUE"
+"155","Shared Program to Champion Group Space","Shared","Champion.Others","TRUE"
+"156","Shared Program to Group Space","Shared","Champion.Others","TRUE"
+"157","Shared Program to Private Space","Shared","Invest.for.Self.Us","TRUE"
+"158","Shared Program to Shared Space","Shared","Invest.for.Self.Us","TRUE"
+"159","Shared Program to Timeline","Shared","Invest.for.Self.Us","TRUE"
+"160","Shared Program to User Group Space","Shared","Invest.for.Self.Us","TRUE"
+"161","Shared Result to Champion Group Space","Shared","Champion.Others","TRUE"
+"162","Shared Result to Group Space","Shared","Champion.Others","TRUE"
+"163","Shared Result to Private Space","Shared","Invest.for.Self.Us","TRUE"
+"164","Shared Result to Shared Space","Shared","Invest.for.Self.Us","TRUE"
+"165","Shared Result to Timeline","Shared","Invest.for.Self.Us","TRUE"
+"166","Shared Result to User Group Space","Shared","Invest.for.Self.Us","TRUE"
+"167","Space Membership Invitation Accepted","Joined Space","Invest.for.Self.Us","TRUE"
+"168","Space Membership Invitation Declined","Invitation Declined","Disengage","TRUE"
+"169","Started Assessment","Started Assessment","Receive.Value","TRUE"
+"170","Started Content","","","TRUE"
+"171","Started Moment","Started Moment","Receive.Value","TRUE"
+"172","Started Program","Started Program","Receive.Value","TRUE"
+"173","Started Session","Started Session","","TRUE"
+"174","Unpublished Program","","Champion.Others","FALSE"
+"175","Updated AddToQueueElement Element","","Champion.Others","FALSE"
+"176","Updated AssessmentMetricPrerequisite Prerequisite","","Champion.Others","FALSE"
+"177","Updated AssessmentResultPrerequisite Prerequisite","","","FALSE"
+"178","Updated BlockquoteElement Element","","Champion.Others","FALSE"
+"179","Updated CohortConnectElement Element","","","FALSE"
+"180","Updated ContentNode Node","","Champion.Others","FALSE"
+"181","Updated CreateSpaceElement Element","","Champion.Others","FALSE"
+"182","Updated DisplayChildrenElement Element","","Champion.Others","FALSE"
+"183","Updated Element","","Champion.Others","FALSE"
+"184","Updated EparachuteElement Element","","Champion.Others","FALSE"
+"185","Updated FormElement Element","","Champion.Others","FALSE"
+"186","Updated HeaderElement Element","","Champion.Others","FALSE"
+"187","Updated HorizontalRuleElement Element","","Champion.Others","FALSE"
+"188","Updated ImageElement Element","","Champion.Others","FALSE"
+"189","Updated IntervalSinceStartPrerequisite Prerequisite","","Champion.Others","FALSE"
+"190","Updated JoinGroupSpaceElement Element","","Champion.Others","FALSE"
+"191","Updated ListElement Element","","Champion.Others","FALSE"
+"192","Updated MomentElement Element","","Champion.Others","FALSE"
+"193","Updated Node","","Champion.Others","FALSE"
+"194","Updated ParagraphElement Element","","Champion.Others","FALSE"
+"195","Updated PlatformLinkElement Element","","Champion.Others","FALSE"
+"196","Updated Prerequisite","","Champion.Others","FALSE"
+"197","Updated Program","","Champion.Others","FALSE"
+"198","Updated QuestionElement Element","","Champion.Others","FALSE"
+"199","Updated ReferenceNode Node","","","FALSE"
+"200","Updated ResultElement Element","","Champion.Others","FALSE"
+"201","Updated ToDoListElement Element","","Champion.Others","FALSE"
+"202","Updated UnlockDatePrerequisite Prerequisite","","Champion.Others","FALSE"
+"203","Updated UserImageElement Element","","Champion.Others","FALSE"
+"204","Updated UserNoteElement Element","","Champion.Others","FALSE"
+"205","Updated VideoElement Element","","Champion.Others","FALSE"
+"206","Updated WebLinkElement Element","","Champion.Others","FALSE"
+"207","User Added Page","","","FALSE"
+"208","User Onboarded","User Onboarded","Receive.Value","TRUE"
+"209","User Removed Page","","","FALSE"

@@ -119,7 +119,7 @@ starttime <- Sys.time()
 
 # Output Location and parameters ####
 save.plots <- T
-out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_19_v2"
+out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_20_v2"
 out.format <- "pdf"
 
 # Breakdown of users into current state, champion  ####
@@ -228,6 +228,8 @@ user_breakdown_by_current_state_data %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
   
 
@@ -273,13 +275,15 @@ for(i in 1:length(statelist)){
     bar_chart_layout(
       charttitle = paste("Share of '", state,"' Users per Champion (", as.character(plot_data$total_number_of_users[1]), " Total Users)", sep = "")
       , yaxisformat = "%"
-      , bottommargin = 200
+      , bottommargin = 450
     ) %>%
     save_or_print(
       save_plots = save.plots
       , outloc = out.loc
       , plot_name = plot.name
       , outformat = out.format
+      , v.width = 1500
+      , v.height = 1100
     )
 }
 
@@ -388,6 +392,8 @@ top_champ_by_mean_streak_data %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 plot.name <- "11_top10_by_max_streak"
@@ -403,6 +409,8 @@ top_champ_by_max_streak_data %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 # Histograms
@@ -446,6 +454,8 @@ overall_histogram_data %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 plot.name <- "12_histogram_of_user_active_streaks_max_winner"
@@ -468,6 +478,8 @@ max_streak_winnner_histogram_data %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 if(mean_streak_winner != max_streak_winner){
@@ -491,6 +503,8 @@ if(mean_streak_winner != max_streak_winner){
       , outloc = out.loc
       , plot_name = plot.name
       , outformat = out.format
+      , v.width = 1500
+      , v.height = 1100
     )
 }
 
@@ -523,6 +537,8 @@ MAU_line_data %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 # DAU/MAU ratio, through time ####
@@ -566,6 +582,8 @@ DAU_to_MAU_monthly_data %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 # Current DAU/MAU ratio, by champion (data done, still needs plotting)####
@@ -610,7 +628,7 @@ DAU_to_MAU_by_champion_data %>%
   plot_ly(type = "bar", x = champion_name, y = overall_DAU_to_MAU_ratio) %>%
   bar_chart_layout(
     charttitle = "Current DAU/MAU Ratio, by Champion"
-    , bottommargin = 350
+    , bottommargin = 450
     , yaxisformat = "%"
   ) %>%
   save_or_print(
@@ -618,6 +636,8 @@ DAU_to_MAU_by_champion_data %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 # Year-to-date DAU/MAU ratio, by champion ####
 DAU_to_MAU_by_champion_subset <- standard_user_subset
@@ -659,7 +679,7 @@ DAU_to_MAU_by_champion_data %>%
   plot_ly(type = "bar", x = champion_name, y = overall_DAU_to_MAU_ratio) %>%
   bar_chart_layout(
     charttitle = paste("Year-to-Date DAU/MAU Ratio, by Champion (", format(max(date_user_table$date), "%Y"), ")", sep = "")
-    , bottommargin = 350
+    , bottommargin = 450
     , yaxisformat = "%"
   ) %>%
   save_or_print(
@@ -667,6 +687,8 @@ DAU_to_MAU_by_champion_data %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 # MAU bar charts #### 
@@ -709,6 +731,8 @@ MAU_bar_chart_list[[1]] %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 plot.name <- "19_MAUs_by_user_state_through_time_relative"
@@ -718,6 +742,8 @@ MAU_bar_chart_list[[2]] %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 plot.name <- "Core_to_New_User_Ratio"
@@ -739,6 +765,8 @@ core_to_new_data %>%
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 endtime <- Sys.time()

@@ -17,7 +17,7 @@ source("fn_save_or_print.r")
 
 # Output Location and parameters ####
 save.plots <- T
-out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_17"
+out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_19_v2"
 out.format <- "html"
 hallmark.action.threshold <- .001
 
@@ -76,9 +76,9 @@ user_platformaction_datetime <-
 standard_user_subset <- user_facts %>%
   merge(select(champion_facts, champion_id, dont.exclude)) %>%
   filter(
-#    dont.exclude
+    dont.exclude
 #    , !fake_end_user
-#    , 
+    , 
     account_type == "End User") %>%
   {.$user_id}
 

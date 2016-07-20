@@ -17,8 +17,8 @@ source("fn_save_or_print.r")
 
 # Output Location and parameters ####
 save.plots <- T
-out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_19_v2"
-out.format <- "html"
+out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_20_v2"
+out.format <- "pdf"
 hallmark.action.threshold <- .001
 
 
@@ -213,6 +213,8 @@ plot_ly(
     , outloc = out.loc
     , plot_name = plot.name
     , outformat = out.format
+    , v.width = 1500
+    , v.height = 1100
   )
 
 
@@ -267,6 +269,8 @@ for(i in 1:length(statelist)){
         , outloc = out.loc
         , plot_name = plot.name
         , outformat = out.format
+        , v.width = 1500
+        , v.height = 1100
       )
    
 }

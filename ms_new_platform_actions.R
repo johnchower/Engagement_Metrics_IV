@@ -86,6 +86,12 @@ if(
         .[is.na(.)] <- ""
         return(.)
       }
-  }
+    
+    write.csv(
+      x = platformaction_facts
+      , file = "input_csvs/platformaction_facts.csv"
+    )
+}
+
 
 

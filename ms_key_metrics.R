@@ -165,3 +165,6 @@ user_breakdown_by_current_state_data %>%
     , plot_name = paste("Percent_of_users_in_each_state", Sys.Date(), sep = "_")
     , outformat = "pdf"
   )
+
+file.remove(paste(out.loc, "/", "Percent_of_users_in_each_state_", Sys.Date(), ".html", sep = ""))
+            

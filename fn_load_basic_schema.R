@@ -78,8 +78,6 @@ load_basic_schema <-
     
     cru_champions <- c(45,5,95,69,34,93,29,83,82)
     
-    fake_champions <- c(12,16,17,18,33,40,41,47,49,50,52,54,59,60,65,68,77,78,81,85,96)
-    
     champid_champname <- path_to_champid_champname %>%
       name_as_looker_output %>% 
       grep(dir(recursive = T), value = T) %>%
@@ -102,9 +100,6 @@ load_basic_schema <-
         )
       } %>%
       mutate(
-        dont.exclude = !(champion_id %in% fake_champions)
-      ) %>%
-      mutate(
         champion_organization =
           ifelse(
             champion_id %in% cru_champions
@@ -119,6 +114,20 @@ load_basic_schema <-
             , "Ambiguous"
             , champion_name
           )
+      )
+    
+    fake_champions <-  c(12,16,17,18,33,40,41,47,49,50,52,54,59,60,65,68,77,78,81,85,96)
+    fake_champions_2 <- champid_champname %>%
+      filter(grepl("Gloo", champion_name)) %>%
+      {.$champion_id}
+    
+    fake_champions <- c(fake_champions,fake_champions_2) %>%
+      unique %>%
+      {.[. != 1]}
+    
+    champid_champname %<>%
+      mutate(
+        dont.exclude = !(champion_id %in% fake_champions)
       )
     
     user_signupdate_champid_accounttype_email <- path_user_facts  %>%

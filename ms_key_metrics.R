@@ -163,5 +163,5 @@ user_breakdown_by_current_state_data %>%
   save_or_print(
     outloc = out.loc
     , plot_name = paste("Percent_of_users_in_each_state", Sys.Date(), sep = "_")
-    , outformat = "png"
+    , outformat = "pdf"
   )

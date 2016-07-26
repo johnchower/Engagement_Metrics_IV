@@ -3,7 +3,7 @@
 # Set parameters ####
 
 use_true_champid <- T # Pick a version of the user table to base calculations on.
-combine_Cru <- T      # Combine all Cru champions under one umbrella?
+combine_Cru <- F      # Combine all Cru champions under one umbrella?
 writeloc <- "/Users/johnhower/Google Drive/Analytics_graphs/top_500_active_users"
 remove_active_actions_from_top3 <- T
 output_graph_format <- "html"

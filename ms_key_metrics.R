@@ -27,6 +27,14 @@ user_facts <-
   ) %>%
   mutate(date = as.Date(date,format="%Y-%m-%d"))
 
+champion_facts <- 
+  read.table(
+    "champion_facts.csv"
+    , header=TRUE
+    , sep=','
+    , stringsAsFactors = FALSE
+  ) 
+
 core_user_metrics_oldgs <- gs_title("core_user_metrics") %>% 
   gs_read
 
@@ -38,6 +46,14 @@ end_users <- user_facts %>%
   filter(account_type == "End User") %>%
   {.$user_id} %>%
   unique
+
+standard_user_subset <- user_facts %>%
+  merge(select(champion_facts, champion_id, dont.exclude)) %>%
+  filter(
+    dont.exclude
+    , account_type == "End User"
+  ) %>% 
+  {.$user_id} 
 
 # Number of core users (defined monthly) who have showed up in past 7, 14 and 28 days
 current_date <- date_user_table %>%
@@ -168,4 +184,41 @@ user_breakdown_by_current_state_data %>%
   )
 
 file.remove(paste(out.loc, "/", "Percent_of_users_in_each_state_", current_date, ".html", sep = ""))
+
+# MAU line chart ####
+MAU_line_subset <- standard_user_subset
+
+MAU_line_data <- date_user_table %>%
+  select(user_id, date, DAU, WAU, MAU) %>%
+  filter(
+    user_id %in% MAU_line_subset
+    , date >= "2016-01-01"
+    , date <= Sys.Date()-1) %>%
+  group_by(date) %>%
+  summarise(Total_MAUs = sum(MAU), Total_WAUs = sum(WAU), Total_DAUs = sum(DAU)) %>%
+  melt(
+    id.vars = "date"
+    , variable.name = "User_Class"
+    , value.name = "Number_of_Users"
+  ) 
+
+plot.name <- "total_AU_line_chart"
+MAU_line_data %>%
+  plot_ly(type = "scatter", x = date, y = Number_of_Users, group = User_Class) %>%
+  bar_chart_layout(
+    charttitle = "Total Number of Active Users"
+    , yaxisrange = NULL
+    , yaxisformat = "n"
+  ) %>%
+  save_or_print(
+    save_plots = T
+    , outloc = out.loc
+    , plot_name = plot.name
+    , outformat = "jpg"
+    , v.width = 1500
+    , v.height = 1100
+  )
+
+file.remove(paste(out.loc, "/", plot.name, ".html", sep = ""))
+
             

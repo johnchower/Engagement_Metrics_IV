@@ -42,16 +42,17 @@ end_users <- user_facts %>%
 # Number of core users (defined monthly) who have showed up in past 7, 14 and 28 days
 current_date <- date_user_table %>%
   summarise(max_date = max(date)) %>%
-  {.$max_date}
+  {.$max_date} %>%
+  min(Sys.Date())
 
 core_user_by_window <- date_user_table %>%
-  filter(date >= max(date) - 28, user_id %in% end_users) %>% 
+  filter(date >= current_date - 28, user_id %in% end_users) %>% 
   group_by(user_id) %>%
   mutate(
     past14 = moving_sum(activitytoday, 14)
   ) %>%
   ungroup %>%
-  filter(date == max(date)) %>%
+  filter(date == current_date) %>%
   mutate(
     core_past_7 = (past7 > 0) & (past28 > 12)
     , core_past_14 = (past14 > 0) & (past28 > 12)
@@ -68,13 +69,13 @@ core_user_by_window <- date_user_table %>%
 # Number of "core" users in past 7, 14 and 28 days
 
 core_user_by_actual_actions <- date_user_table %>%
-  filter(date >= max(date) - 28, user_id %in% end_users) %>% 
+  filter(date >= current_date - 28, user_id %in% end_users) %>% 
   group_by(user_id) %>%
   mutate(
     past14 = moving_sum(activitytoday, 14)
   ) %>%
   ungroup %>%
-  filter(date == max(date)) %>%
+  filter(date == current_date) %>%
   mutate(
     core_past_7 = past7 > 3
     , core_past_14 = past14 > 6
@@ -137,16 +138,16 @@ user_breakdown_by_current_state_data %>%
   {
     plot_ly(.,
       type = "bar"
-      , marker = list(color = brewer.pal(nrow(.), "Dark2"))
+      , marker = list(color = "gray")#list(color = brewer.pal(nrow(.), "Dark2"))
       , x = current_segment
       , y = percent_of_users
       , text = paste(100*percent_of_users, "% (", as.character(number_of_users), " users)", sep = "")
       , mode = "markers"
       , hoverinfo = "text"
-      , color = current_segment
+#      , color = "gray"
     )
   } %>%
-  layout(showlegend = F, annotations = a) %>%
+  layout(showlegend = F, annotations = a, yaxis = list(showgrid = F)) %>%
   bar_chart_layout(
     charttitle = 
       paste(
@@ -162,9 +163,9 @@ user_breakdown_by_current_state_data %>%
   ) %>%
   save_or_print(
     outloc = out.loc
-    , plot_name = paste("Percent_of_users_in_each_state", Sys.Date(), sep = "_")
+    , plot_name = paste("Percent_of_users_in_each_state", current_date, sep = "_")
     , outformat = "pdf"
   )
 
-file.remove(paste(out.loc, "/", "Percent_of_users_in_each_state_", Sys.Date(), ".html", sep = ""))
+file.remove(paste(out.loc, "/", "Percent_of_users_in_each_state_", current_date, ".html", sep = ""))
             

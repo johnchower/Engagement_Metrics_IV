@@ -4,8 +4,11 @@ plot_triangle_progress <-
   function(
     mpdbd = mode_pct_data_by_date
     , user_subset = unique(mpdbd$user_id)
+    , subsetname = "All Users"
     , days_since_signup = c(1, 7, 28)
+    , ...
   ){
+    out <- list()
     for(i in days_since_signup){
       mpdbd %>%
         prepare_modepctdata_for_createconvexdata(user_subset, number_of_days = i, maxdate = Sys.Date()) %>%
@@ -14,8 +17,8 @@ plot_triangle_progress <-
         {
           title <- 
             paste("Day", i, sep = " ")
-          return(. + ggtitle(paste(name, "-", title, sep = " ")))
-        } %>%
-        return
+          return(. + ggtitle(paste(subsetname, "-", title, sep = " ")))
+        } %>% 
+        save_or_print(...)
     }
   }

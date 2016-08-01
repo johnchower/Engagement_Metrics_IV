@@ -38,6 +38,16 @@ save_or_print <-
           , vwidth = v.width
           , vheight = v.height
         )
+      } else if(outformat == "jpg"){
+        saveWidget(as.widget(p)
+                   , paste(plot_name, ".html", sep = "")
+        )
+        webshot(
+          paste(plot_name, ".html", sep = "")
+          , file = paste(plot_name, ".jpg", sep = "")
+          , vwidth = v.width
+          , vheight = v.height
+        )
       }
       setwd(current_wd)
     } else{print(p)}

@@ -265,7 +265,7 @@ load_basic_schema <-
         header=TRUE
         , sep=','
         , stringsAsFactors = FALSE
-      ) %>% head
+      ) %>% 
       rename(
         cohort_id = User.to.Cohort.Dimensions.ID
         , champion_id = Cohort.to.Champion.Dimensions.ID
@@ -282,6 +282,7 @@ load_basic_schema <-
     , assessmentid_champid
     , cohortid_cohortname
     , userid_cohortid
+    , cohortid_champid
   ))
 }
 

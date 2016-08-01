@@ -41,6 +41,7 @@ basic_programid_champid <- df.list[[7]]
 basic_assessmentid_champid <- df.list[[8]]
 basic_cohortid_cohortname <- df.list[[9]]
 basic_userid_cohortid <- df.list[[10]]
+basic_cohortid_champid <- df.list[[11]]
 rm(load_basic_schema, df.list)
 
 # Add program and assessment starts to platform action list ####
@@ -229,6 +230,10 @@ write.csv(
   , file = "cohortid_cohortname.csv"
 )
 
+write.csv(
+  x = basic_cohortid_champid
+  , file = "cohortid_champid.csv"
+)
  
 
 # Clear workspace ####

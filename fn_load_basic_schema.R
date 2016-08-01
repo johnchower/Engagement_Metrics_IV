@@ -282,6 +282,7 @@ load_basic_schema <-
     , assessmentid_champid
     , cohortid_cohortname
     , userid_cohortid
+    , cohortid_champid
   ))
 }
 

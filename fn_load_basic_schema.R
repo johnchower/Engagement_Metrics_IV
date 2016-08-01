@@ -25,6 +25,8 @@ load_basic_schema <-
     path_userid_cohortid = "input_csvs/userid_cohortid"
     , 
     path_cohortid_cohortname = "input_csvs/cohortid_cohortname"
+    ,
+    path_cohortid_champid = "input_csvs/cohortid_champid"
   ){
     
     user_date_time_platformaction_champid_isfirst <-
@@ -254,6 +256,19 @@ load_basic_schema <-
       rename(
         user_id = User.Dimensions.ID
         , cohort_id = User.to.Cohort.Dimensions.ID
+      )
+    
+    cohortid_champid <- path_cohortid_champid %>%
+      name_as_looker_output %>%
+      grep(dir(recursive = T), value = T) %>%
+      read.csv(
+        header=TRUE
+        , sep=','
+        , stringsAsFactors = FALSE
+      ) %>% head
+      rename(
+        cohort_id = User.to.Cohort.Dimensions.ID
+        , champion_id = Cohort.to.Champion.Dimensions.ID
       )
     
   return(list(

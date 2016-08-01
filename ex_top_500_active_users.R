@@ -86,8 +86,8 @@ user_demographics <-
     header = T
     , sep = ','
     , stringsAsFactors = F
-  ) %>%
-  rename(
+  ) %>% 
+  dplyr::rename(
     user_id = User.Dimensions.ID
     , age = User.Dimensions.Age
     , age_tier = User.Dimensions.Age.Tier
@@ -162,7 +162,7 @@ FamilyLife_users <- user_facts %>%
 user_activitymetrics_pastmonth <- user_platformaction_datetime %>%
   filter(date > max(date) - 28) %>%
   group_by(user_id) %>%
-  summarise(
+  dplyr::summarise(
     number_of_actions_past_month = n()
     , number_of_active_days_past_month = length(unique(date))
   )
@@ -209,7 +209,7 @@ top_user_facts <- user_platformaction_datetime %>%
     , dont.exclude
   ) %>%
   group_by(user_id) %>%
-  summarise(number_of_champion_connections = n()) %>%
+  dplyr::summarise(number_of_champion_connections = n()) %>%
   merge(top_user_facts, all.y = T) %>% 
   {
     .$number_of_actions_past_month[is.na(.$number_of_actions_past_month)] <- 0
@@ -233,7 +233,7 @@ topuser_champion_list <- top_users_list %>%
         select(user_id, champion_id, champion_name) %>%
         unique %>%
         group_by(champion_id, champion_name) %>%
-        summarise(number_of_users = n()) %>%
+        dplyr::summarise(number_of_users = n()) %>%
         arrange(desc(number_of_users)) %>%
         return
     }
@@ -247,7 +247,7 @@ topuser_cohort_list <- top_users_list %>%
       userid_cohortid %>%
         filter(user_id %in% u) %>%
         group_by(cohort_id) %>%
-        summarise(number_of_users = n()) %>%
+        dplyr::summarise(number_of_users = n()) %>%
         merge(cohortid_cohortname) %>%
         arrange(desc(number_of_users)) %>%
         select(-X) %>%

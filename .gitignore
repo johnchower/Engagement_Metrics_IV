@@ -4,3 +4,4 @@
 .httr-oauth
 *.csv
 !*platformaction_facts.csv
+*scratch_work*

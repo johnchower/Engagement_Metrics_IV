@@ -7,6 +7,8 @@
 
 chisquare_analysis <- 
   function(df, err_pvalue = .99){
+    df %<>% ungroup 
+    
     orig_names <- colnames(df)
     
     colnames(df) <- c("v1", "v2", "observed")

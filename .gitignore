@@ -1,3 +1,6 @@
 .Rproj.user
+.RData
+.Rhistory
+.httr-oauth
 *.csv
 !*platformaction_facts.csv

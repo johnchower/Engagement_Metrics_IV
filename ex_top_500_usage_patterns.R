@@ -185,7 +185,10 @@ cohort_summary_list <- cohort_breakdown_list %>%
           , yaxistitle = "Number of Users"
         ) %>%
         save_or_print(
-          save_plots = F
+          save_plots = T
+          , outloc = out.loc
+          , plot_name = paste("cohort_breakdown_", name, sep = "")
+          , outformat = "pdf"
         )
       
       summary_df %>%
@@ -194,33 +197,56 @@ cohort_summary_list <- cohort_breakdown_list %>%
     }
   )
 
+out.loc %>%
+  {gsub("Google Drive", "'Google Drive'", .)} %>%
+  {paste("open ", ., "/cohort_breakdown*.pdf", sep = "")} %>%
+  system
+
 # Triangle diagrams of each cohort
 
-# Plot triangle diagrams for each (user tier, cohort) combination. ####
+# Plot triangle diagrams for each intersect(top_500), important_cohort) combination. ####
 
-for(i in 1:length(user_cutoffs)){
+for(i in length(user_cutoffs)){
   important_cohorts <- cohort_summary_list[[i]]
   user_subset_0 <- top_users_list[[i]]
   cohort_breakdown <- cohort_breakdown_list[[i]]
   tier_size <- user_cutoffs[i]
   
   for(cohort in important_cohorts){
+    friendly_cohort <- cohort %>%
+      {gsub(" ", "_", .)} %>%
+      {gsub("_-_", "_", .)}
+    
+    outloc <- out.loc
+    plot_name <- paste("triangle_distribution_top_500_intersect", friendly_cohort, sep = "_")
+    
     top_user_cohort_set <- cohort_breakdown %>%
       filter(description == cohort) %>%
       {.$user_id} %>%
       unique
+    
+    
     
     mode_pct_data_by_date %>% 
       plot_triangle_progress(
         user_subset = top_user_cohort_set
         , subsetname = paste("Users from top", tier_size, "who belong to", cohort, sep = " ")
         , days_since_signup = 28
-        , save_plots = F
+        , filename = paste(plot_name, ".pdf", sep = "")
+        , path = outloc
+        , width = 12
+        , height = 9
       ) 
   }
 }
 
-# Cluster CFP cohorts
+# Open the pdf files to check that they look good.
+out.loc %>%
+  {gsub("Google Drive", "'Google Drive'", .)} %>%
+  {paste("open ", ., "/*intersect*.pdf", sep = "")} %>%
+  system
+
+# Plot CFP cohorts that show clustering ####
 library(chron)
 
 cohort_untitled_invitation_facts <- 
@@ -252,17 +278,62 @@ for(j in c(14, 32)){
       intersect(top_users_list$top_500)
     
     if(length(user_subset) > 10){
+      subset.name = paste(project, "CFP", "cohort", cohort, sep = " ")
+      
+      friendly_subset.name <- subset.name %>%
+        {gsub(" ", "_", .)} %>%
+        {gsub("_-_", "_", .)}
+      
+      plot_name <- paste("triangle_distribution", friendly_subset.name, sep = "_")
+      
+      
       mode_pct_data_by_date %>% 
         plot_triangle_progress(
           user_subset = user_subset
-          , subsetname = paste(project, "CFP", "cohort", cohort, sep = " ")
+          , subsetname = subset.name
           , days_since_signup = 28
-          , save_plots = F
+          , save_plots = T
+          , filename = paste(plot_name, ".pdf", sep = "")
+          , path = outloc
+          , width = 12
+          , height = 9 
         )
     }
      
   }
 }
+
+  # Open the pdf files to check that they look good.
+  out.loc %>%
+    {gsub("Google Drive", "'Google Drive'", .)} %>%
+    {paste("open ", ., "/triangle_distribution_C*.pdf", sep = "")} %>%
+    system
+  
+# Make triangle distribution for the top_n users ####
+  
+for(i in 1:length(top_users_list)){
+  tier_name <- names(top_users_list)[i]
+  tier_name_spaces <- gsub("_", " ", tier_name)
+  plot_name <- paste("triangle_distribution", tier_name, sep = "_")
+  user.set <- top_users_list[[tier_name]]
+  
+  mode_pct_data_by_date %>% 
+    plot_triangle_progress(
+      user_subset = user.set
+      , subsetname = paste("Users from", tier_name_spaces, sep = " ")
+      , days_since_signup = 28
+      , filename = paste(plot_name, ".pdf", sep = "")
+      , path = outloc
+      , width = 12
+      , height = 9
+    ) 
+}
+
+# Open the pdf files to check that they look good.
+out.loc %>%
+  {gsub("Google Drive", "'Google Drive'", .)} %>%
+  {paste("open ", ., "/triangle_distribution_top_*.pdf", sep = "")} %>%
+  system
 
 # Chisquare analysis of platform actions taken by cohorts, etc. ####
 

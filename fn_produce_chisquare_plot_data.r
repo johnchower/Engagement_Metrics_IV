@@ -24,8 +24,8 @@ produce_chisquare_plot_data <-
             # select_(.dots = dots) %>%
             mutate(
               total_actions = sum(observed)
-              , percent_observed = observed/sum(observed)
-              , percent_expected = expected/sum(expected)
+              , percent_observed = observed/total_actions
+              , percent_expected = expected/total_actions
               , err = err/total_actions
             ) %>%
             return

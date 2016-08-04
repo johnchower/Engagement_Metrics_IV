@@ -13,7 +13,7 @@ produce_chisquare_plot_data <-
       dlply(
         .variables = slice_variable
         , .fun = function(df){
-          dots <- c(colnames(df)[2], "observed", "expected", "err")
+          # dots <- c(colnames(df)[2], "observed", "expected", "err", "pvalue")
           
           df %>%
             arrange(desc(marginal2)) %>%
@@ -21,7 +21,7 @@ produce_chisquare_plot_data <-
               colnames(.)[3] <- "observed"
               return(.)
             } %>%
-            select_(.dots = dots) %>%
+            # select_(.dots = dots) %>%
             mutate(
               total_actions = sum(observed)
               , percent_observed = observed/sum(observed)

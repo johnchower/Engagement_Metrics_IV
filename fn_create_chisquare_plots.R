@@ -7,14 +7,11 @@ create_chisquare_plots <- function(
   , thing_being_counted = "Platform Actions" # What quantity are the bars measuring?
   , thing_being_sliced = "Users" # What does each graph's subset consist of?
   , err_bar_width = 5
-#  , args.save_or_print = list() # Pass a list of arguments for the save_or_print function
   , ... # Pass the bar chart layout arguments 
 ){
   plot.data %>%
-    names %>%
-    lapply(
-      FUN = function(name){
-        plot_data <- plot.data[[name]] 
+    llply(
+      .fun = function(plot_data){
         out_plot <-  
           plot_ly(
             plot_data
@@ -38,7 +35,7 @@ create_chisquare_plots <- function(
               charttitle = 
                 paste(
                   "Platform Action Distribution for '"
-                  , name
+                  , plot_data[1,1]
                   , paste("'", thing_being_sliced, "(", sep = " ")
                   , prettyNum(plot_data$total_actions[1], big.mark = ",")
                   , " Total Actions)"
@@ -46,9 +43,6 @@ create_chisquare_plots <- function(
                 )
               , ...
             )
-        
-        #do.call(save_or_print, c(out_plot, args.save_or_print)) %>%
-        #  return
       }
     )
 }

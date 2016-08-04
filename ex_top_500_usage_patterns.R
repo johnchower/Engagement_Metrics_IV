@@ -10,6 +10,8 @@ library(plyr)
 library(dplyr)
 library(chron)
 library(plotly)
+library(htmlwidgets)
+library(webshot)
 
 source("fn_create_mode_pct_data.r")
 source("fn_create_mode_pct_data_by_date.r")
@@ -21,9 +23,16 @@ source("fn_plot_triangle_progress.r")
 source("fn_cohort_breakdown.r")
 source("fn_bar_chart_layout.r")
 source("fn_chisquare_analysis.r")
+source("fn_produce_chisquare_plot_data.r")
+source("fn_create_chisquare_plots.r")
 
 layout <- plotly::layout
 
+# Parameters 
+
+out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/top_500_active_users"
+  
+  
 # User subsets ####
 
 standard_user_subset <- user_facts %>% 
@@ -129,23 +138,23 @@ top_users_list %>%
     }
   )
 
-# Take the top cohorts from each tier. Plot those cohorts through time. ####
-
-u.subset <- intersect(top_500, cohort_students$`Growth Facilitator Training Phoenix June 13 @ Salvation Army.Family Bridges`)
-mode_pct_data_by_date %>% 
-  plot_triangle_progress(
-    user_subset = u.subset
-    , subsetname = "Growth Facilitator Training Phoenix June 13, Top 500"
-    , days_since_signup = c(1, 7*(1:6))
-    , save_plots = F
-  ) 
-
 # Cohort breakdowns ####
+
+
 
 cohort_breakdown_list <- top_users_list %>%
   llply(
     .fun = cohort_breakdown
   )
+
+big_cohorts <- c(
+  "No cohort - FamilyLife"
+  , "Cohort - Christian CFP"
+  , "Cohort - Civic CFP"
+  , "No cohort - Gloo"
+  #  , "Cohort - Cru"
+  , "Cohort - Family Bridges"
+)
 
 # Histogram of cohort breakdowns by tier ####
 
@@ -165,14 +174,7 @@ cohort_summary_list <- cohort_breakdown_list %>%
         summarise(number_of_users = length(unique(user_id))) %>% 
         arrange(desc(number_of_users)) %>%
         filter(
-          description %in%
-            c(
-              "No cohort - FamilyLife"
-              , "Cohort - CFP"
-              , "No cohort - Gloo"
-              , "Cohort - Cru"
-              , "Cohort - Family Bridges"
-            )
+          description %in% big_cohorts
         )
       
       summary_df %>%
@@ -264,3 +266,68 @@ for(j in c(14, 32)){
 
 # Chisquare analysis of platform actions taken by cohorts, etc. ####
 
+chisquare_results_top500 <- user_platformaction_datetime %>%
+  merge(select(platformaction_facts, platform_action, group)) %>%
+  merge(select(cohort_breakdown_list$top_500,user_id, description), all.x = T) %>%
+  rename(cohort_description = description) %>%
+  mutate(
+    cohort_description = ifelse(
+      is.na(cohort_description)
+      , "Standard User"
+      , cohort_description
+    )
+  ) %>%
+  group_by(cohort_description, group) %>%
+  summarise(count = n()) %>% 
+  ungroup %>%
+  chisquare_analysis
+
+tempout <- chisquare_results_top500$results %>%
+  produce_chisquare_plot_data %>% 
+  {.[big_cohorts]} %>%
+  llply(
+    .fun = function(df){
+      df %>% 
+        filter(
+          pvalue < .01
+          , !(group %in% c(
+            ""
+            , "Answered Assessment Item"
+            , "Account Created"
+            , "Started Session"
+          ))
+        ) %>%
+        return
+    }
+  )
+   
+
+plotlist <- tempout %>%
+  create_chisquare_plots(
+    yaxisformat = "%"
+    , yaxisrange = c(0, .16)
+    , bottommargin = 200
+  )
+
+plotlist %>%
+  names %>%
+  lapply(
+    FUN = function(name){
+      out_plot <- plotlist[[name]]
+      
+      friendly_name <- name %>%
+        {gsub(" ", "_", .)} %>%
+        {gsub("_-_", "_", .)}
+      
+      save_or_print(
+        out_plot
+        , outloc = out.loc
+        , plot_name = paste("platform_actions_top_500", friendly_name, sep = "_")
+        , outformat = "pdf"
+        , v.width = 1200
+        , v.height = 900
+      )
+    }
+  )
+
+ 

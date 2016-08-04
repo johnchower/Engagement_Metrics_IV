@@ -25,7 +25,7 @@ plot_triangle_diagram_v2 <-
       geom_segment(x = 0.5, y = 0.5*tan(pi/6), xend = 0.5, yend = 0) +
       geom_segment(x = 0.5, y = 0.5*tan(pi/6), xend = 0.25, yend = sqrt(3)/4) +
       geom_segment(x = 0.5, y = 0.5*tan(pi/6), xend = 0.75, yend =  sqrt(3)/4) +
-      xlim(-.125,1.1) +
+      xlim(-.125,1.15) +
       ylim(-.125,1) +
       annotate("text", label = "Receive Value", x = 0.5, y = sqrt(3)/2 + .1, size = 10) +
       annotate("text", label = "Champion Others", x = .1, y = -.1, size = 10) +
@@ -36,7 +36,7 @@ plot_triangle_diagram_v2 <-
         , panel.grid.minor = element_blank()
         , legend.text = element_text(size = 20)
         , legend.title = element_text(size = 20)
-        , plot.title = element_text(size = 20, face = "bold")
+        , plot.title = element_text(size = 16, face = "bold")
         , axis.ticks = element_blank()
         , axis.text = element_blank()
       ) +

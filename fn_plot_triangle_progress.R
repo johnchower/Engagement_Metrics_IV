@@ -6,6 +6,7 @@ plot_triangle_progress <-
     , user_subset = unique(mpdbd$user_id)
     , subsetname = "All Users"
     , days_since_signup = c(1, 7, 28)
+    , save_plots = T
     , ...
   ){
     out <- list()
@@ -19,6 +20,8 @@ plot_triangle_progress <-
             paste("Day", i, sep = " ")
           return(. + ggtitle(paste(subsetname, "-", title, sep = " ")))
         } %>% 
-        save_or_print(...)
+        {
+          if(save_plots){ggsave(plot = ., ...)} else {print(.)}
+        }
     }
   }

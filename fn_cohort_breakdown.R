@@ -39,17 +39,24 @@ cohort_breakdown <- function(
         , paste(has.cohort, cohort_champion_name, sep = " - ")
       )
     ) %>%
+#    mutate(
+#      description = ifelse(
+#        grepl("Cru", description)
+#        , "Cohort - Cru"
+#        , description
+#      )
+#    ) %>%
     mutate(
       description = ifelse(
-        grepl("Cru", description)
-        , "Cohort - Cru"
+        grepl("Christian Character Formation Project", description)
+        , "Cohort - Christian CFP"
         , description
       )
     ) %>%
     mutate(
       description = ifelse(
-        grepl("Character Formation Project", description)
-        , "Cohort - CFP"
+        grepl("Civic Character Formation Project", description)
+        , "Cohort - Civic CFP"
         , description
       )
     ) %>%

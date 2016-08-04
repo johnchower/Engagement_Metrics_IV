@@ -252,13 +252,17 @@ count_df <-
 result_df <- count_df %>%
   dcast(week + champion ~ variable, value.var = "count") %>%
   mutate(pct_WAU = round(weekly_active_users/existing_users,3)) %>%
-  select(-existing_users, -weekly_active_users)
+  select(
+    -existing_users
+  #  , -weekly_active_users
+  )
 
 # Format results to match Scott's Excel file ####
 
 result_df %<>%
   melt %>%
-  dcast(champion ~ variable + week, value.var = "value")
+  dcast(champion ~ variable + week, value.var = "value") %>%
+  arrange(champion == "all_users", champion)
 
 # Export result csv ####
 

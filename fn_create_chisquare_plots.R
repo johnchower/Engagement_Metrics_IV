@@ -15,37 +15,40 @@ create_chisquare_plots <- function(
     lapply(
       FUN = function(name){
         plot_data <- plot.data[[name]] 
-        plot_ly(
-          plot_data
-          , x = plot_data[,1]
-          , y = percent_expected
-          , text = 
-            paste("(", prettyNum(round(expected), big.mark = ","), " ", thing_being_counted, " expected)", sep = "")
-          , type = "bar"
-          , name = paste("Expected Percent of", thing_being_counted, sep = " ")
-          , error_y = list(array = err, width = err_bar_width)
-        ) %>%
-          add_trace(
-            x = plot_data[,1]
-            , y = plot_data$percent_observed
+        out_plot <-  
+          plot_ly(
+            plot_data
+            , x = plot_data[,1]
+            , y = percent_expected
             , text = 
-              paste("(", prettyNum(round(plot_data$observed), big.mark = ","), " ", thing_being_counted, " observed)", sep = "")
+              paste("(", prettyNum(round(expected), big.mark = ","), " ", thing_being_counted, " expected)", sep = "")
             , type = "bar"
-            , name = paste("Observed Percent of", thing_being_counted, sep = " ")
+            , name = paste("Expected Percent of", thing_being_counted, sep = " ")
+            , error_y = list(array = err, width = err_bar_width)
           ) %>%
-          bar_chart_layout(
-            charttitle = 
-              paste(
-                "Platform Action Distribution for '"
-                , name
-                , paste("'", thing_being_sliced, "(", sep = " ")
-                , prettyNum(plot_data$total_actions[1], big.mark = ",")
-                , " Total Actions)"
-                , sep = ""
-              )
-            , ...
-          ) %>%
-          save_or_print(save_plots = F)
+            add_trace(
+              x = plot_data[,1]
+              , y = plot_data$percent_observed
+              , text = 
+                paste("(", prettyNum(round(plot_data$observed), big.mark = ","), " ", thing_being_counted, " observed)", sep = "")
+              , type = "bar"
+              , name = paste("Observed Percent of", thing_being_counted, sep = " ")
+            ) %>%
+            bar_chart_layout(
+              charttitle = 
+                paste(
+                  "Platform Action Distribution for '"
+                  , name
+                  , paste("'", thing_being_sliced, "(", sep = " ")
+                  , prettyNum(plot_data$total_actions[1], big.mark = ",")
+                  , " Total Actions)"
+                  , sep = ""
+                )
+              , ...
+            )
+        
+        do.call(save_or_print, c(out_plot, args.save_or_print)) %>%
+          return
       }
     )
 }

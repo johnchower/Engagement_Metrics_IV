@@ -10,6 +10,11 @@ library(dplyr)
 library(plyr)
 library(plotly)
 library(RColorBrewer)
+library(reshape2)
+library(htmlwidgets)
+library(webshot)
+
+summarise <- dplyr::summarise
 
 # Load Data ####
 
@@ -73,18 +78,18 @@ end_and_champion_users <- user_facts %>%
 # One Session Only - Same def as before. Just check if their state is "one Session" on the last day
 # Reactivated - Were they dormant before the time interval, yet use Gloo at some point during the interval?
 
-user_breakdown_by_state_data_0 <- date_user_table %>%
+user_breakdown_by_state_data_0 <- date_user_table %>% 
   filter(
     user_id %in% end_and_champion_users
     , date >= startdate - 1
     , date < enddate
-  ) %>%
+  ) %>% 
   mutate(
     in_interval = ((date >= startdate) & (date < enddate))
     , day_before = date == startdate - 1
-  ) %>%
-  group_by(user_id) %>%
-  summarise(
+  ) %>% 
+  group_by(user_id) %>% 
+  dplyr::summarise(
     active_days_in_interval = sum(activitytoday[in_interval])
     , New = sum(account_created == 1 & in_interval) > 0
     , Reactivated = sum(dormant_user[day_before]) > 0 & active_days_in_interval > 0
@@ -99,7 +104,7 @@ user_breakdown_by_state_data_0 <- date_user_table %>%
         & active_days_in_interval <= 1*interval.length/7
     , Dormant = !New & !Reactivated &!One_Session_Only
         & active_days_in_interval == 0
-  ) %>%
+  ) %>% 
   ungroup %>%
   select(-active_days_in_interval)
 
@@ -173,4 +178,11 @@ out.loc %>%
   {paste("open ", ., "/user_state_breakdown*.pdf", sep = "")} %>%
   system
 
-file.remove(paste(out.loc, "/", "Percent_of_users_in_each_state_", current_date, ".html", sep = ""))
+# Remove extra html file
+
+out.loc %>%
+  {gsub("Google Drive", "'Google Drive'", .)} %>%
+  {paste("rm ", ., "/user_state_breakdown*.html", sep = "")} %>%
+  system
+
+

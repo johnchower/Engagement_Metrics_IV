@@ -9,6 +9,10 @@ library(magrittr)
 
 account_types_to_accept <- c("End User", "Champion User")
 
+weeks_to_calc <- c(1, 3, 6)
+
+week_string <- paste(weeks_to_calc, collapse = "")
+
 # Load label-match data ####
 label_includes <- read.csv("label_includes.csv", stringsAsFactors = F) %>%
   select(Label, Includes) %>%
@@ -71,12 +75,12 @@ champion_facts_labels <- champion_facts %>%
 
 # Dates of interest ####
 
-rundate <- as.Date("2016-07-29")
+rundate <- as.Date("2016-08-05")
 
 weeklist <- list(
-  week1 = (rundate - 7) + c(0, 6)
-  , week3 = (rundate - 21) + c(0, 6)
-  , week6 = (rundate - 42) + c(0, 6)
+  week1 = (rundate - weeks_to_calc[1]*7) + c(0, 6)
+  , week3 = (rundate - weeks_to_calc[2]*7) + c(0, 6)
+  , week6 = (rundate - weeks_to_calc[3]*7) + c(0, 6)
 )
 
 
@@ -271,6 +275,8 @@ write.csv(
   , paste(
       "~/Google Drive/Analytics_graphs/Cornerstone_Metrics/core_and_WAU/core_and_WAU"
       , rundate
+      , "weeks"
+      , paste(weeks_to_calc, collapse = "")
       , ".csv"
       , sep = "_"
     )

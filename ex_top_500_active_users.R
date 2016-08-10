@@ -113,6 +113,14 @@ cohortid_cohortname <-
     , stringsAsFactors = F
   )
 
+cohortid_champid <-
+  "cohortid_champid.csv" %>%
+  read.table(
+    header = T
+    , sep = ','
+    , stringsAsFactors = F
+  )
+
 # Read in the user_facts table ####
 
 user_facts <- 
@@ -171,7 +179,7 @@ top_users_list <- user_cutoffs %>%
   lapply(
     FUN = function(i){
       user_activitymetrics_pastmonth %>%
-        filter(user_id %in% standard_user_subset) %>%
+        filter(user_id %in% standard_user_subset) %>% # You have to be an End User to make the top 500!
         arrange(desc(number_of_actions_past_month)) %>%
         slice(1:i) %>%
         {.$user_id} %>% return
@@ -245,12 +253,15 @@ topuser_cohort_list <- top_users_list %>%
   lapply(
     FUN = function(u){
       userid_cohortid %>%
-        filter(user_id %in% u) %>%
-        group_by(cohort_id) %>%
-        dplyr::summarise(number_of_users = n()) %>%
+        merge(cohortid_champid, by = "cohort_id") %>% select(-X.x, -X.y) %>%
+        merge(select(champion_facts, champion_id, champion_name), all.x = T) %>%
         merge(cohortid_cohortname) %>%
+        filter(user_id %in% u) %>%
+        group_by(cohort_name, champion_id) %>%
+        dplyr::summarise(number_of_users = length(unique(user_id))) %>%
+        #select(-X) %>% 
         arrange(desc(number_of_users)) %>%
-        select(-X) %>%
+        ungroup %>%
         return
     }
   )

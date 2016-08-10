@@ -30,7 +30,7 @@ layout <- plotly::layout
 
 # Parameters 
 
-out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/top_500_active_users"
+out.loc <- "/Users/johnhower/top_500_active_users"
   
   
 # User subsets ####
@@ -42,7 +42,7 @@ standard_user_subset <- user_facts %>%
   ) %>% 
   {.$user_id} 
 
-FamilyLife_users %>% user_facts %>%
+
 
 top_10 <- top_users_list$top_10
 top_50 <- top_users_list$top_50
@@ -366,6 +366,7 @@ tempout <- chisquare_results_top500$results %>%
             , "Answered Assessment Item"
             , "Account Created"
             , "Started Session"
+            , "Connected to Champion"
           ))
         ) %>%
         return
@@ -401,4 +402,8 @@ plotlist %>%
     }
   )
 
- 
+# Open the pdf files to check that they look good.
+out.loc %>%
+  {gsub("Google Drive", "'Google Drive'", .)} %>%
+  {paste("open ", ., "/platform_actions*.pdf", sep = "")} %>%
+  system

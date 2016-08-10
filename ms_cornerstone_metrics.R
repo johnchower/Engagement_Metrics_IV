@@ -9,9 +9,11 @@ library(magrittr)
 
 account_types_to_accept <- c("End User", "Champion User")
 
-weeks_to_calc <- c(1, 3, 6)
+weeks_to_calc <- c(1, 2, 4)
 
 week_string <- paste(weeks_to_calc, collapse = "")
+
+rundate <- as.Date("2016-08-05")
 
 # Load label-match data ####
 label_includes <- read.csv("label_includes.csv", stringsAsFactors = F) %>%
@@ -75,7 +77,7 @@ champion_facts_labels <- champion_facts %>%
 
 # Dates of interest ####
 
-rundate <- as.Date("2016-08-05")
+#rundate <- as.Date("2016-08-05")
 
 weeklist <- list(
   week1 = (rundate - weeks_to_calc[1]*7) + c(0, 6)
@@ -266,14 +268,20 @@ result_df <- count_df %>%
 result_df %<>%
   melt %>%
   dcast(champion ~ variable + week, value.var = "value") %>%
-  arrange(champion == "all_users", champion)
+  arrange(champion == "all_users", champion) %>%
+  {
+    colnames(.) <- gsub("week1", paste("week", weeks_to_calc[1], sep = ""), names(.))
+    colnames(.) <- gsub("week3", paste("week", weeks_to_calc[2], sep = ""), names(.))
+    colnames(.) <- gsub("week6", paste("week", weeks_to_calc[3], sep = ""), names(.))
+    return(.)
+  } 
 
 # Export result csv ####
 
 write.csv(
   result_df
   , paste(
-      "~/Google Drive/Analytics_graphs/Cornerstone_Metrics/core_and_WAU/core_and_WAU"
+      "~/Google Drive/Analytics_graphs/Cornerstone_Metrics/core_and_WAU_csvs/core_and_WAU"
       , rundate
       , "weeks"
       , paste(weeks_to_calc, collapse = "")
@@ -281,3 +289,18 @@ write.csv(
       , sep = "_"
     )
 )
+
+# Open the pdf files to check that they look good.
+
+
+paste(
+  "~/Google Drive/Analytics_graphs/Cornerstone_Metrics/core_and_WAU_csvs/core_and_WAU"
+  , rundate
+  , "weeks"
+  , paste(weeks_to_calc, collapse = "")
+  , ".csv"
+  , sep = "_"
+) %>%
+  {gsub("Google Drive", "'Google Drive'", .)} %>%
+  {paste("open ", ., sep = "")} %>%
+  system

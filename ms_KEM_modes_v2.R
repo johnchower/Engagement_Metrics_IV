@@ -102,7 +102,8 @@ FamilyLife_users <- user_facts %>%
 
 # Output Location and parameters ####
 save_plots <- T
-outloc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_19"
+outloc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_29"
+outformat <- "pdf"
 current_wd <- getwd()
 
 # Prepare current mode data for plotting ####
@@ -212,7 +213,7 @@ for(i in 1:length(champions_to_plot)){
   { 
     if(save_plots){
       setwd(outloc)
-      ggsave(paste(plot_name, ".png", sep = ""), plot = ., width = 12, height = 9)  
+      ggsave(paste(plot_name, ".", outformat, sep = ""), plot = ., width = 12, height = 9)  
       setwd(current_wd)
     } else{print(.)}   
   }

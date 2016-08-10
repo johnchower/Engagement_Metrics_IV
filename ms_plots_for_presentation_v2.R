@@ -8,6 +8,7 @@ library(RColorBrewer)
 library(scales)
 library(magrittr)
 library(htmlwidgets)
+library(webshot)
 
 layout <- plotly::layout
 
@@ -119,7 +120,7 @@ starttime <- Sys.time()
 
 # Output Location and parameters ####
 save.plots <- T
-out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_07_20_v2"
+out.loc <- "/Users/johnhower/Google Drive/Analytics_graphs/Engagement_Performance_Presentation_Slides/2016_08_05"
 out.format <- "pdf"
 
 # Breakdown of users into current state, champion  ####

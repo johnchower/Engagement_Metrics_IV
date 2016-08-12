@@ -7,7 +7,7 @@ library(magrittr)
 
 # Parameters
 
-account_types_to_accept <- c("End User", "Champion User")
+account_types_to_accept <- c("End User", "Champion User", "Internal User")
 
 weeks_to_calc <- c(1, 3, 6)
 
@@ -72,12 +72,18 @@ label_includes_df <- label_includes_list %>%
 
 champion_facts_labels <- champion_facts %>%
   #select(champion_id, champion_name) %>%
-  merge(label_includes_df, by.x = "champion_name", by.y = "Includes", all.x = T) 
+  merge(label_includes_df, by.x = "champion_name", by.y = "Includes", all.x = T) %>%
+  mutate(
+    Label = 
+      ifelse(
+        is.na(Label)
+        , ifelse(!dont.exclude, "Internal", "Other")
+        , Label
+      )
+  )
   
 
 # Dates of interest ####
-
-#rundate <- as.Date("2016-08-05")
 
 weeklist <- list(
   week1 = (rundate - weeks_to_calc[1]*7) + c(0, 6)
@@ -268,13 +274,13 @@ result_df <- count_df %>%
 result_df %<>%
   melt %>%
   dcast(champion ~ variable + week, value.var = "value") %>%
-  arrange(champion == "all_users", champion) %>%
+  arrange(champion == "all_users", champion == "Internal", champion == "Other", champion) %>%
   {
     colnames(.) <- gsub("week1", paste("week", weeks_to_calc[1], sep = ""), names(.))
     colnames(.) <- gsub("week3", paste("week", weeks_to_calc[2], sep = ""), names(.))
     colnames(.) <- gsub("week6", paste("week", weeks_to_calc[3], sep = ""), names(.))
     return(.)
-  } 
+  }
 
 # Export result csv ####
 

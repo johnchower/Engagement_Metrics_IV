@@ -42,7 +42,16 @@ basic_assessmentid_champid <- df.list[[8]]
 basic_cohortid_cohortname <- df.list[[9]]
 basic_userid_cohortid <- df.list[[10]]
 basic_cohortid_champid <- df.list[[11]]
+
+# Check to see if any of the basic schema have only 500 rows. If so, then you forgot to
+# check "all results" in Looker.
+
+rows_list <- apply(df.list, FUN = nrow)
+rows_list
+
 rm(load_basic_schema, df.list)
+
+
 
 # Add program and assessment starts to platform action list ####
 

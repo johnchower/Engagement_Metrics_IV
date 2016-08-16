@@ -46,7 +46,7 @@ basic_cohortid_champid <- df.list[[11]]
 # Check to see if any of the basic schema have only 500 rows. If so, then you forgot to
 # check "all results" in Looker.
 
-rows_list <- apply(df.list, FUN = nrow)
+rows_list <- lapply(df.list, FUN = nrow)
 rows_list
 
 rm(load_basic_schema, df.list)
@@ -70,7 +70,7 @@ program_starts <- basic_program_starts %>%
     date = as.Date(format(datetime, "%Y-%m-%d"))
     , time = substr(datetime, 11, 18)
   ) %>%
-  merge(basic_programid_champid) %>%
+  inner_join(basic_programid_champid) %>%
   {
     ddply(
       .
@@ -95,7 +95,7 @@ assessment_starts <- basic_assessment_starts %>%
     date = as.Date(format(datetime, "%Y-%m-%d"))
     , time = substr(datetime, 11, 18)
   ) %>%
-  merge(basic_assessmentid_champid) %>%
+  inner_join(basic_assessmentid_champid) %>%
   {
     ddply(
       .
@@ -126,20 +126,17 @@ alldates <- basic_user_datetime_platformaction %>%
   {seq.Date(min(.$date), max(.$date), by = 1)}
 
 user_alldates <-   basic_user %>%
-  select(user_id, date) %>%
-  rename(createddate = date) %>%
-  merge(
-    data.frame(date = alldates)
-    , all = T
-  ) %>% 
+  select(user_id, date) %>% mutate(dummy = 1) %>% 
+  rename(createddate = date) %>% full_join(data.frame(date = alldates, dummy = 1)) %>%
   filter(date >= createddate) %>%
-  select(-createddate)
+  select(-createddate, -dummy)
 
 user_platformactiondate_activitytoday <- basic_user_datetime_platformaction %>%
   group_by(user_id, date) %>%
   summarise(activitytoday = 1) %>%
   ungroup %>%
-  merge(user_alldates, all = T) %>% 
+  full_join(user_alldates) %>%
+  # merge(user_alldates, all = T) %>% 
   {
     .$activitytoday[is.na(.$activitytoday)] <- 0
     return(.)
@@ -176,10 +173,11 @@ date_user_table <- user_platformactiondate_activitytoday %>%
 user_table <- date_user_table %>%
   filter(date == max(date)) %>%
   select(user_id, segment) %>%
-  merge(
-    basic_user
-    , all = T # Comment this out to revert to original version.
-  ) %>%
+  full_join(basic_user) %>%
+  # merge(
+  #   basic_user
+  #   , all = T
+  # ) %>%
   rename(current_segment = segment)
 
 # Check for new platform actions. If there are any, classify them before moving on ####

@@ -15,6 +15,12 @@ week_string <- paste(weeks_to_calc, collapse = "")
 
 rundate <- as.Date("2016-07-29")
 
+
+# Alternatives:
+out.loc <- 
+  "~/Desktop"
+  # "~/Google Drive/Analytics_graphs/Cornerstone_Metrics/core_and_WAU_csvs/core_and_WAU"
+
 # Load label-match data ####
 label_includes <- read.csv("label_includes.csv", stringsAsFactors = F) %>%
   select(Label, Includes) %>%
@@ -72,7 +78,8 @@ label_includes_df <- label_includes_list %>%
 
 champion_facts_labels <- champion_facts %>%
   #select(champion_id, champion_name) %>%
-  merge(label_includes_df, by.x = "champion_name", by.y = "Includes", all.x = T) %>%
+  # merge(label_includes_df, by.x = "champion_name", by.y = "Includes", all.x = T) %>%
+  left_join(label_includes_df, by = c("champion_name" = "Includes")) %>%
   mutate(
     Label = 
       ifelse(
@@ -128,7 +135,8 @@ weekly_existing_user_subset <- weeklist %>%
       enddate <- max(v)
       
       date_user_table %>%
-        merge(select(user_facts, user_id, account_type), by.x = "user_id", by.y = "user_id", all.x = T) %>% 
+        # merge(select(user_facts, user_id, account_type), by.x = "user_id", by.y = "user_id", all.x = T) %>% 
+        left_join(select(user_facts, user_id, account_type), by = c("user_id" = "user_id")) %>%
         filter(
           date == enddate
           , account_type %in% account_types_to_accept | is.na(account_type)
@@ -147,7 +155,8 @@ weekly_WAU_subset <- weeklist %>%
       enddate <- max(v)
       
       date_user_table %>%
-        merge(select(user_facts, user_id, account_type), by.x = "user_id", by.y = "user_id", all.x = T) %>%
+        # merge(select(user_facts, user_id, account_type), by.x = "user_id", by.y = "user_id", all.x = T) %>%
+        left_join(select(user_facts, user_id, account_type), by = c("user_id" = "user_id")) %>%
         filter(
           date == enddate
           , WAU == 1
@@ -167,7 +176,8 @@ weekly_core_subset <- weeklist %>%
       enddate <- max(v)
       
       date_user_table %>%
-        merge(select(user_facts, user_id, account_type), by.x = "user_id", by.y = "user_id", all.x = T) %>%
+        # merge(select(user_facts, user_id, account_type), by.x = "user_id", by.y = "user_id", all.x = T) %>%
+        left_join(select(user_facts, user_id, account_type), by = c("user_id" = "user_id")) %>%
         filter(
           date <= enddate
           , date >= enddate
@@ -286,26 +296,28 @@ result_df %<>%
 
 write.csv(
   result_df
-  , paste(
-      "~/Google Drive/Analytics_graphs/Cornerstone_Metrics/core_and_WAU_csvs/core_and_WAU"
-      , rundate
-      , "weeks"
-      , paste(weeks_to_calc, collapse = "")
-      , ".csv"
-      , sep = "_"
-    )
+  , paste0(
+    out.loc
+    , "/"
+    , rundate
+    , "_"
+    , "weeks"
+    , paste(weeks_to_calc, collapse = "")
+    , ".csv"
+  )
 )
 
 # Open the pdf files to check that they look good.
 
 
-paste(
-  "~/Google Drive/Analytics_graphs/Cornerstone_Metrics/core_and_WAU_csvs/core_and_WAU"
+paste0(
+  out.loc
+  , "/"
   , rundate
+  , "_"
   , "weeks"
   , paste(weeks_to_calc, collapse = "")
   , ".csv"
-  , sep = "_"
 ) %>%
   {gsub("Google Drive", "'Google Drive'", .)} %>%
   {paste("open ", ., sep = "")} %>%

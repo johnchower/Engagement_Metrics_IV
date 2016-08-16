@@ -68,11 +68,12 @@ load_basic_schema <-
       ) %>%
       mutate(time = paste(time,":00",sep="")) %>%
       mutate(datetime = chron(date, time, format = c('y-m-d','h:m:s'))) %>%
-      mutate(date = as.Date(date,format="%Y-%m-%d")) %>%
-      merge(
-        user_date_time_platformaction_champid_isfirst
-        , all.x = T
-      ) %>%
+      mutate(date = as.Date(date,format="%Y-%m-%d")) %>% 
+      left_join(user_date_time_platformaction_champid_isfirst) %>%
+      # merge(
+      #   user_date_time_platformaction_champid_isfirst
+      #   , all.x = T
+      # ) %>%
       mutate(
         isfirst = ifelse(is.na(isfirst), F, isfirst)
         , platform_action = ifelse(isfirst, paste(platform_action, "(first)", sep = " "), platform_action)
@@ -151,7 +152,7 @@ load_basic_schema <-
     
     # Get fake end users, merge a column into the user table that points them out.
     user_fakeenduser <-
-      merge(
+      inner_join(
         user_platformaction_date_time
         , select(platformaction_group_mode_enduserallowed
             , platform_action
@@ -163,7 +164,7 @@ load_basic_schema <-
     
     user_signupdate_champid_accounttype_email_fakeenduser <-
       user_signupdate_champid_accounttype_email %>%
-      merge(user_fakeenduser)
+      inner_join(user_fakeenduser)
     
     # Program & Assessment starts
     

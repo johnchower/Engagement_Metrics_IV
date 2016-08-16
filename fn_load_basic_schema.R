@@ -61,10 +61,10 @@ load_basic_schema <-
         , stringsAsFactors = F
       ) %>%
       rename(
-        user_id = User.Dimensions.ID
-        , platform_action = User.Platform.Action.Facts.Platform.Action
-        , date = Date.Dimensions.Platform.Action.Date
-        , time = Date.Dimensions.Platform.Action.Time.of.Day
+        user_id = user_id
+        , platform_action = platform_action
+        , date = sql_date_stamp
+        , time = minute_description
       ) %>%
       mutate(time = paste(time,":00",sep="")) %>%
       mutate(datetime = chron(date, time, format = c('y-m-d','h:m:s'))) %>%

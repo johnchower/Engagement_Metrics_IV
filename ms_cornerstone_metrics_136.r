@@ -23,12 +23,14 @@ csv_name <-
   paste0(
     out.loc
     , "/"
+    , "datadate_"
     , rundate
     , "_"
     , "weeks"
     , paste(weeks_to_calc, collapse = "")
-    , "_"
+    , "_rundate_"
     , Sys.Date()
+    , "no_na_accttype_whole_week"
     , ".csv"
   )
 
@@ -119,7 +121,7 @@ champion_subset <- champion_facts_labels %>%
       champion_ids <- df$champion_id
       user_facts %>%
         filter(
-          account_type %in% account_types_to_accept | is.na(account_type)
+          account_type %in% account_types_to_accept #| is.na(account_type)
           , champion_id %in% champion_ids
         ) %>%
         {.$user_id} %>%
@@ -150,7 +152,7 @@ weekly_existing_user_subset <- weeklist %>%
         left_join(select(user_facts, user_id, account_type), by = c("user_id" = "user_id")) %>%
         filter(
           date == enddate
-          , account_type %in% account_types_to_accept | is.na(account_type)
+          , account_type %in% account_types_to_accept #| is.na(account_type)
         ) %>%
         {.$user_id} %>%
         unique %>%
@@ -171,7 +173,7 @@ weekly_WAU_subset <- weeklist %>%
         filter(
           date == enddate
           , WAU == 1
-          , account_type %in% account_types_to_accept | is.na(account_type)
+          , account_type %in% account_types_to_accept #| is.na(account_type)
         ) %>%
         {.$user_id} %>%
         unique %>%
@@ -194,7 +196,7 @@ weekly_core_subset <- weeklist %>%
           , date >= enddate
           , segment == "Core"
           , activitytoday == 1
-          , account_type %in% account_types_to_accept | is.na(account_type)
+          , account_type %in% account_types_to_accept #| is.na(account_type)
         ) %>%
         {.$user_id} %>%
         unique %>%

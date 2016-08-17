@@ -15,11 +15,22 @@ week_string <- paste(weeks_to_calc, collapse = "")
 
 rundate <- as.Date("2016-07-29")
 
-
-# Alternatives:
 out.loc <- 
   "~/Desktop"
   # "~/Google Drive/Analytics_graphs/Cornerstone_Metrics/core_and_WAU_csvs/core_and_WAU"
+
+csv_name <- 
+  paste0(
+    out.loc
+    , "/"
+    , rundate
+    , "_"
+    , "weeks"
+    , paste(weeks_to_calc, collapse = "")
+    , "_"
+    , Sys.Date()
+    , ".csv"
+  )
 
 # Load label-match data ####
 label_includes <- read.csv("label_includes.csv", stringsAsFactors = F) %>%
@@ -296,29 +307,13 @@ result_df %<>%
 
 write.csv(
   result_df
-  , paste0(
-    out.loc
-    , "/"
-    , rundate
-    , "_"
-    , "weeks"
-    , paste(weeks_to_calc, collapse = "")
-    , ".csv"
-  )
+  , csv_name
 )
 
 # Open the pdf files to check that they look good.
 
 
-paste0(
-  out.loc
-  , "/"
-  , rundate
-  , "_"
-  , "weeks"
-  , paste(weeks_to_calc, collapse = "")
-  , ".csv"
-) %>%
+csv_name %>%
   {gsub("Google Drive", "'Google Drive'", .)} %>%
   {paste("open ", ., sep = "")} %>%
   system
